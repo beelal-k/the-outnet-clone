@@ -1,0 +1,211 @@
+:root {
+  --gray: #f2f2f2;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+#track {
+  background-color: var(--gray);
+  height: 2.5em;
+  line-height: 2.5em;
+  font-size: 79%;
+  padding-right: 8%;
+}
+
+.smol {
+  font-size: 14px;
+}
+
+.inline {
+  display: inline;
+}
+
+/* .profIcon{
+  /* width: %; */
+/* height: 50%; */
+/* display: inline; 
+}*/
+
+.sign {
+  /* display: inline; */
+  padding-left: 2%;
+}
+
+#gspace {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+}
+
+/* .burger{
+  width: 50%;
+} */
+
+.logo {
+  padding: 5%;
+  padding-left: 11.1%;
+}
+
+#leftHead {
+  line-height: 5em;
+  padding: 1%;
+  padding-left: 5%;
+}
+
+#rightHead {
+  line-height: 5em;
+  padding: 11px;
+  padding-left: 9.5%;
+}
+
+#search {
+  padding-left: 2%;
+
+}
+
+
+#navbar ul {
+  list-style: none;
+
+}
+
+#navbarUL li {
+  float: left;
+  padding-left: 2.9%;
+
+}
+
+.link{
+  color: black;
+}
+
+#navbarUL li:hover .link{ 
+  color: lightgray;
+}
+
+/* #navbarUL .link:hover li{
+  color: lightgray;
+} */
+
+
+
+
+#underNav {
+  background-color: var(--gray);
+  height: 50px;
+}
+
+#underNavborder {
+  height: 20px;
+  line-height: 20px;
+  border-right: 1px solid rgb(172, 172, 172) ;
+  padding-left: 8%;
+}
+
+.underNavtext{
+  line-height: 50px;
+  font-size: 13px;
+  padding-left: 2%;
+  
+}
+
+#underNavborder2 {
+  height: 20px;
+  line-height: 20px;
+  border-right: 1px solid rgb(172, 172, 172) ;
+  padding-left: 5%;
+}
+
+.lists{
+  list-style: none;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 1px;
+  column-count: 2;
+  
+}
+
+.lists li{
+  padding-bottom: 4%;
+}
+
+.help{
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.bold{
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.rightfooter{
+  width: 35%;
+  font-size: 12px;
+}
+
+.email{
+  width: 70%;
+  height: 14%;
+  border: 1px solid lightgray;
+  padding: 3%;
+}
+
+.email:hover{
+  border: 1px solid var(--gray);
+}
+.email:focus{
+  outline: none;
+}
+
+.emailBtn{
+  border: 1px solid lightgray;
+  width: 20%;
+  height: 14%;
+  padding-bottom: 0.9%;
+  font-size: 15px;
+  background-color: white;
+  margin-left: 2%;
+}
+
+.emailBtn:hover{
+  border: 1px solid black;
+}
+.emailBtn:focus{
+  outline: none;
+}
+
+.number{
+  letter-spacing: 1px;
+}
+
+.vsmol{
+  font-size: 12px;
+}
+
+.mainBtns{
+  border: 1px solid black;
+  /* width: 30%; */
+  height: 7%;
+  padding-left: 3%;
+  padding-right: 3%;
+  /* padding-bottom: 0.9%; */
+  font-size: 15px;
+  background-color: white;
+  margin-left: 2%;
+  transition: 200ms;
+}
+
+.mainBtns:hover{
+  background-color: black;
+  color: white;
+  transition: 200ms;
+
+}
+
+.errorText{
+  color: rgb(44, 44, 44);
+  font-size: 70px;
+}

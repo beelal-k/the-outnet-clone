@@ -1,0 +1,68 @@
+.smol{
+    font-size: 13px;
+}
+
+.big{
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#itemleft{
+    width: 50%;
+}
+
+#itemright{
+    width: 50%;
+}
+
+.btns{
+    background-color: white;
+    border: 2px solid rgb(225, 225, 225);
+    padding: 2%;
+    font-size: 14px;
+    padding-left: 7%;
+    padding-right: 7%;
+    margin-top: 2%;
+    margin-right: 2%;
+}
+
+.btns:focus{
+    border: 2px solid black;
+}
+
+#add2cart{
+    background-color: black;
+    color: white;
+    padding: 1.8%;    
+    /* border: none; */
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+#add2cart:hover{
+    background-color: rgb(153, 153, 153);
+    /* border: none; */
+    border: solid rgb(153, 153, 153);
+}
+
+#add2wish{
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 1.8%;
+    /* border: ; */
+    margin-top: 2%;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+#add2wish:hover{
+    border: 1px solid black;
+}
+
+#alsoItems{
+    /* width: 50%; */
+    display: flex;
+    
+    /* column-count: 5; */
+}
