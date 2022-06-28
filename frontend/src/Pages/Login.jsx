@@ -32,29 +32,25 @@ const Login = () => {
 
         e.preventDefault();
 
-        let result = await fetch('http://localhost:80/api/login', {
+        const result = await fetch('http://localhost:80/api/login', {
             method: 'POST',
-            body: JSON.stringify({ email, password }),
             headers: {
                 'content-type': 'application/json'
-            }
+            },
+            body: JSON.stringify({ email, password })
         }
 
         )
-        result = await result.json();
-        // localStorage.getItem('temp', JSON.stringify(result))
-        console.log(result)
-        if (result.user === true) {
-            alert('Login successful!')
-            // setUser(JSON.stringify({ email, password }))
-            // console.log(user)
-            // navigate('/');
+        const data = await result.json();
 
+        console.log(data.user)
+        if (data.user == true) {
+            alert('Login successful!')
+            navigate('/');
         }
         else {
             alert('Please check your username and password')
         }
-        // console.log(result.user);
     }
 
 
