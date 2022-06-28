@@ -68,7 +68,7 @@ const Login = () => {
                         <br />
                         <Link to='/login' className='hrefs'>
                             <label className="form-control">
-                                <input type="radio" name="radio" id='registered' className='radios' checked />
+                                <input type="radio" name="radio" id='registered' className='radios' defaultChecked />
                                 I'm already registered
                             </label>
                         </Link>

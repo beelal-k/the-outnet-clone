@@ -25,11 +25,13 @@ app.post('/api/register', async (req, res) => {
         });
         const result = await user.save();
         res.json({ status: 'User Registered!' })
-        res.send(result);
+        console.log(result);
     }
     catch (err) {
         res.json({ status: 'error', error: 'Some Error IDK' })
     }
+
+
 })
 
 app.post('/api/login', async (req, res) => {

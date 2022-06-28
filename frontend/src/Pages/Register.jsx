@@ -70,7 +70,7 @@ const Register = () => {
 
                         <Link to='/register' className='hrefs'>
                             <label className="form-control">
-                                <input type="radio" name="radio" id='newUser' className='radios' checked />
+                                <input type="radio" name="radio" id='newUser' className='radios' defaultChecked />
                                 I'm new to THE OUTNET
                             </label>
                         </Link>
