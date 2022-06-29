@@ -1,15 +1,27 @@
 const express = require('express');
-const User = require('./models/User.js')
+const User = require('./models/User.js');
 require('./database/config');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const cors = require('cors');
 
 app.use(cors());
+app.use(cors({
+    origin: true,
+    credentials: true
+}))
+app.use(cookieParser())
 app.use(express.json());
 
 const port = 80;
+
+app.get('/test', (req,res) =>{
+    res.send('Hello world1!')
+})
+
+
 
 app.post('/api/register', async (req, res) => {
     try {
@@ -34,29 +46,36 @@ app.post('/api/register', async (req, res) => {
 
 })
 
+
 app.post('/api/login', async (req, res) => {
     const user = await User.findOne({
         email: req.body.email,
         password: req.body.password
     })
 
+
     if (user) {
+
         const token = jwt.sign({
             firstName: user.firstName,
             email: user.email
         }, 'outnetsecretadmin123')
+
+        res.cookie('jwtoken', 'token', {
+            expires: new Date(Date.now() + 5000),
+            httpOnly: true,
+            withCredentials:true
+        });
+
         return res.json({ status: 'ok', user: token })
     }
     else {
-        return res.json({ status: 'error', user: 'false' })
+        return res.status(400).json({ error: 'User Not Found' })
     }
 
 })
 
 
-
-
-
 app.listen(port, () => {
-    console.log(`Server started at port ${port}`);
+    console.log(`Server started on port ${port}!`);
 })

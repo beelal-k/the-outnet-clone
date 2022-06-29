@@ -28,6 +28,8 @@ const Login = () => {
 
     }
 
+    let data;
+
     const loginUser = async (e) => {
 
         e.preventDefault();
@@ -41,18 +43,28 @@ const Login = () => {
         }
 
         )
-        const data = await result.json();
+        data = await result.json();
 
         console.log(data.user)
-        if (data.user == true) {
-            alert('Login successful!')
-            navigate('/');
+        if (result.status === 400 || !data) {
+            alert('Invalid Credentials')
         }
         else {
-            alert('Please check your username and password')
-        }
-    }
+            alert('Login Successful!')
+            navigate('/')
 
+        }
+        // if (data.user === true) {
+        //     alert('Login successful!')
+        //     navigate('/');
+        // }
+        // else {
+        //     alert('Please check your username and password')
+        // }
+
+        // console.log(result)
+        // console.log(result.token)
+    }
 
     return (
         <>
