@@ -3,6 +3,7 @@ const User = require('./models/User.js');
 require('./database/config');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const authenticate = require('./middleware/authenticate')
 
 const app = express();
 const cors = require('cors');
@@ -15,11 +16,8 @@ app.use(cors({
 app.use(cookieParser())
 app.use(express.json());
 
-const port = 80;
 
-app.get('/test', (req,res) =>{
-    res.send('Hello world1!')
-})
+const port = 80;
 
 
 
@@ -53,18 +51,15 @@ app.post('/api/login', async (req, res) => {
         password: req.body.password
     })
 
+    let token;
 
     if (user) {
 
-        const token = jwt.sign({
-            firstName: user.firstName,
-            email: user.email
-        }, 'outnetsecretadmin123')
+        token = await user.generateAuthToken();
 
-        res.cookie('jwtoken', 'token', {
+        res.cookie('jwtoken', token, {
             expires: new Date(Date.now() + 5000),
-            httpOnly: true,
-            withCredentials:true
+            httpOnly: true
         });
 
         return res.json({ status: 'ok', user: token })
@@ -75,7 +70,19 @@ app.post('/api/login', async (req, res) => {
 
 })
 
+app.get('/dashboard', authenticate, (req, res) => {
+    res.send(req.rootUser)
+    
+
+})
+
+app.get('/', authenticate, (req,res) =>{
+    res.send(req.rootUser)
+})
+
+
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}!`);
 })
+

@@ -39,7 +39,8 @@ const Login = () => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ email, password })
+            credentials: 'include',
+            body: JSON.stringify({ email, password },)
         }
 
         )
@@ -50,6 +51,8 @@ const Login = () => {
             alert('Invalid Credentials')
         }
         else {
+            // let temp = req.cookies.jwtoken
+            // console.log(temp)
             alert('Login Successful!')
             navigate('/')
 

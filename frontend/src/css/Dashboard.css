@@ -1,0 +1,31 @@
+.morning{
+    font-weight:300;
+    letter-spacing: 1px;
+}
+#accHead{
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.sections{
+    margin-right: 0.6em;
+    width: 32.6%;
+    font-size: 14px;
+    padding-left: 1.2em;
+    padding-top: 1.2em;
+    height: 12em;
+    border: 1px solid lightgray;
+    transition: 100ms ease-in-out;
+
+}
+
+.sections:hover{
+    cursor: pointer;
+    border: 1px solid black;
+    transition: 200ms ease-in-out;
+}
+
+.sections:focus{
+    border: 2px solid black;
+    
+}

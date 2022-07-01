@@ -13,7 +13,8 @@ import Bestsellers from './Pages/Bestsellers'
 import Designers from './Pages/Designers'
 import Register from './Pages/Register'
 import Dashboard from './Pages/Dashboard'
-import RegisteredPages from './Pages/RegisteredPages'
+// import RegisteredPages from './Pages/RegisteredPages'
+
 
 
 function App() {
@@ -37,9 +38,9 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/bestsellers' element={<Bestsellers />} />
         <Route path='/designers' element={<Designers />} />
-        <Route element={<RegisteredPages />}>
-          <Route path='/dashboard' element={<Dashboard />} />
-        </Route>
+        {/* <Route element={<RegisteredPages />}> */}
+        <Route path='/dashboard' element={<Dashboard />} />
+        {/* </Route> */}
       </Routes>
 
       {/* THIS IS THE FOOTER */}

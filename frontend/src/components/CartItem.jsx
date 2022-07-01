@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import trash from '../images/delete.png'
-// import cart from '../data/cartData';
+import cart from '../data/cartData';
 
 const CartItem = ({ product }) => {
 
@@ -21,9 +21,13 @@ const CartItem = ({ product }) => {
 
     }
 
+    const delItem = () => {
+        cart = cart.filter(product.id)
+    }
+
     return (
         <>
-            <div className='testLeft '>
+            <div className='testLeft ' key={product.id}>
                 <img src={product.image} className='cartImg' alt='...' />
                 <div className='cartInfo'>
                     <h6>{product.brand}</h6>
@@ -35,7 +39,7 @@ const CartItem = ({ product }) => {
                     <p className='inline smol' id='amount'>{amount}</p>
                     &emsp;
                     <button className='inline amountBtns' id='addBtn' onClick={increment}>+</button>
-                    &emsp;&emsp;<img src={trash} alt="..."/>
+                    &emsp;&emsp;<button><img src={trash} alt="..." onClick={delItem} /></button>
 
                 </div>
 
