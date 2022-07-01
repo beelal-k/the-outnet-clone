@@ -2,10 +2,18 @@ import React from 'react'
 import { useState } from 'react';
 import trash from '../images/delete.png'
 import cart from '../data/cartData';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../css/CartItem.css'
 
 const CartItem = ({ product }) => {
 
     let [amount, setAmount] = useState(1)
+
+    const test = () => {
+        toast("This is how toast works!");
+        console.log('clicked')
+    }
 
 
     let increment = () => {
@@ -39,8 +47,8 @@ const CartItem = ({ product }) => {
                     <p className='inline smol' id='amount'>{amount}</p>
                     &emsp;
                     <button className='inline amountBtns' id='addBtn' onClick={increment}>+</button>
-                    &emsp;&emsp;<button><img src={trash} alt="..." onClick={delItem} /></button>
-
+                    &emsp;&emsp;<button><img src={trash} alt="..." onClick={test} /></button>
+                    <ToastContainer progressClassName='notificationProgress' limit={3}/>
                 </div>
 
             </div>

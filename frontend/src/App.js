@@ -16,7 +16,6 @@ import Dashboard from './Pages/Dashboard'
 // import RegisteredPages from './Pages/RegisteredPages'
 
 
-
 function App() {
   return (
     <>
