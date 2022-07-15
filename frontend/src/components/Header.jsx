@@ -4,7 +4,8 @@ import logo from '../images/logo.png'
 import { Link } from 'react-router-dom'
 // import Login from '../Pages/Login'
 
-function Header() {
+function Header({user}) {
+    
     return (
 
         <>
@@ -17,8 +18,9 @@ function Header() {
                 &emsp;&emsp;&nbsp;
                 <div className=' col-xl-4' id='leftHead'>
                    <Link to='/dashboard'><img src="https://img.icons8.com/small/30/000000/gender-neutral-user.png" alt='...' className='profIcon inline' /></Link>
-                    <Link to='/login' className="hrefs"><p className='sign inline smol'>Sign In</p></Link>
+                    <Link to='/login' className="hrefs"><p className='sign inline smol'>{ user ? user.firstName : "Sign In"}</p></Link>
                     <p className='border-end' id='gspace'>&emsp;</p>
+                    <Link to='/logout' className='hrefs'><span className='sign inline smol'>&emsp;Log Out</span></Link>
                 </div>
                 <div className='col-xl-4  '>
                     <Link to='/'><img src={logo} alt='...' className=' logo' /></Link>

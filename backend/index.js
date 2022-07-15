@@ -76,7 +76,7 @@ app.get('/dashboard', authenticate, (req, res) => {
 
 })
 
-app.get('/', authenticate, (req,res) =>{
+app.get('/', (req,res) =>{
     res.send(req.rootUser)
 })
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 // import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom'
+// import Header from '../components/Header';
 import InfoBanner from '../components/InfoBanner';
 import '../css/Dashboard.css';
 
@@ -9,47 +10,49 @@ const Dashboard = () => {
   let temp = 0;
   const navigate = useNavigate();
   const [userData, setUserData] = useState();
+  // let fName = userData.firstName;
 
 
   const callAboutPage = async () => {
-    if (temp == 1) {
-      try {
-        const res = await fetch('http://localhost:80/dashboard', {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "content-type": "application/json"
-          },
-          credentials: 'include'
+    try {
+      const res = await fetch('http://localhost:80/dashboard', {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "content-type": "application/json"
+        },
+        credentials: 'include'
 
-        })
-
-        const data = await res.json();
-        setUserData(data)
-        console.log(userData)
-        console.log(data)
-        temp = 1;
-        // setUserData(data);
+      })
 
 
-        if (!res.status === 200) {
-          const error = new Error(res.error)
-          throw error;
-        }
-        
+      const data = await res.json();
+      setUserData(data);
+      console.log(userData)
+      console.log(data)
+      // temp = 1;
+
+      if (!res.status === 200) {
+        const error = new Error(res.error)
+        throw error;
       }
 
-      catch (err) {
-        console.log(err)
-        navigate('/login')
-      }
     }
+
+    catch (err) {
+      console.log(err)
+      // if (temp === 1) {
+      navigate('/login')
+      // }
+    }
+
   }
 
   useEffect(() => {
     callAboutPage();
 
   }, [])
+
 
 
   return (

@@ -12,7 +12,7 @@ function Designers() {
 
   return (
     <>
-
+    
       <InfoBanner />
       <section className='container underHead text-left'>
         <div className=' underHeadLeft'>
