@@ -3,6 +3,8 @@ import { useState } from 'react';
 import trash from '../images/delete.png'
 import cart from '../data/cartData';
 import { ToastContainer, toast } from 'react-toastify';
+import { cssTransition } from 'react-toastify';
+import 'animate.css'
 import 'react-toastify/dist/ReactToastify.css';
 import '../css/CartItem.css'
 
@@ -10,9 +12,15 @@ const CartItem = ({ product }) => {
 
     let [amount, setAmount] = useState(1)
 
+    const bounce = cssTransition({
+        enter: "animate__animated animate__wobble",
+        exit: "animate__animated animate__wobble"
+    })
+
     const test = () => {
-        toast("This is how toast works!");
-        console.log('clicked')
+        toast.dark("This is how toast works!", {
+            transition: bounce
+        });
     }
 
 
@@ -48,7 +56,7 @@ const CartItem = ({ product }) => {
                     &emsp;
                     <button className='inline amountBtns' id='addBtn' onClick={increment}>+</button>
                     &emsp;&emsp;<button><img src={trash} alt="..." onClick={test} /></button>
-                    <ToastContainer progressClassName='notificationProgress' limit={3}/>
+                    <ToastContainer limit={1} position="bottom-right" transition={bounce}/>
                 </div>
 
             </div>
