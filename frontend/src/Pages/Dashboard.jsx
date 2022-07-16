@@ -7,13 +7,13 @@ import InfoBanner from '../components/InfoBanner';
 import '../css/Dashboard.css';
 
 const Dashboard = () => {
-  let temp = 0;
+  // let temp = 0;
   const navigate = useNavigate();
   const [userData, setUserData] = useState();
   // let fName = userData.firstName;
 
 
-  const callAboutPage = async () => {
+  const callDashboard = async () => {
     try {
       const res = await fetch('http://localhost:80/dashboard', {
         method: "GET",
@@ -28,7 +28,7 @@ const Dashboard = () => {
 
       const data = await res.json();
       setUserData(data);
-      console.log(userData)
+      // console.log(userData)
       console.log(data)
       // temp = 1;
 
@@ -49,7 +49,7 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    callAboutPage();
+    callDashboard();
 
   }, [])
 

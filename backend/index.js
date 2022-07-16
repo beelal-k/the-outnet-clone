@@ -58,7 +58,7 @@ app.post('/api/login', async (req, res) => {
         token = await user.generateAuthToken();
 
         res.cookie('jwtoken', token, {
-            expires: new Date(Date.now() + 5000),
+            expires: new Date(Date.now() + 2980000),
             httpOnly: true
         });
 
