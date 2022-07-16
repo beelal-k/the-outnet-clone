@@ -14,7 +14,7 @@ const SingleItem = () => {
     let { id } = useParams();
     let prodData = products.find(e => e.id === Number(id))
 
-    const addCart = () =>{
+    const addCart = () => {
 
         let temp = [];
         let item = items.find(x => x.id === Number(id))
@@ -26,7 +26,7 @@ const SingleItem = () => {
         // console.log(temp)
         // console.log(products)
     }
-    
+
     return (
         <>
             <InfoBanner />
@@ -39,7 +39,6 @@ const SingleItem = () => {
 
                 <div id='itemleft' className='text-center'>
                     <img src={prodData.image} alt='...' className='w-50' />
-
                 </div>
 
                 <div id='itemright' className='container'>
