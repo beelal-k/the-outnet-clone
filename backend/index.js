@@ -72,15 +72,36 @@ app.post('/api/login', async (req, res) => {
 
 app.get('/dashboard', authenticate, (req, res) => {
     res.send(req.rootUser)
-    
+
 
 })
 
-app.get('/', (req,res) =>{
+app.get('/', (req, res) => {
     res.send(req.rootUser)
 })
 
 
+app.get('/api/logout', (req, res) => {
+    res.clearCookie('jwtoken', { path: '/' });
+    res.status(200).send('User Logged Out!');
+    console.log('Cookie Cleared!')
+
+})
+
+app.get('/api/header', async (req, res) => {
+    const token = req.cookies.jwtoken;
+    if (token) {
+        const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
+        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
+
+        if (!rootUser) {
+            throw error('User not found')
+        }
+        // req.rootUser = rootUser;
+        res.send(rootUser);
+    }
+
+})
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}!`);

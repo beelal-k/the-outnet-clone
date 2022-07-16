@@ -2,16 +2,44 @@ import React from 'react'
 import '../css/App.css'
 import logo from '../images/logo.png'
 import { Link } from 'react-router-dom'
-import { Cookies } from 'react-cookie'
+import { useState } from 'react'
+import { useEffect } from 'react'
+// import { useEffect } from 'react'
+// import { Cookies } from 'react-cookie'
 // import Login from '../Pages/Login'
 
-function Header({ user }) {
+const Header = () => {
 
-    const logOut = () => {
 
-        Cookies.remove("jwtoken", {path: '/'})
+    const [user, setUser] = useState();
 
+
+    const getName = async () => {
+        try {
+            const res = await fetch('http://localhost:80/api/header', {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'content-type': 'application/json'
+                },
+                credentials: 'include'
+            })
+
+            const data = await res.json();
+            setUser(data);
+            console.log(data);
+
+        }
+        catch (err) {
+            console.log(err)
+
+        }
     }
+
+    useEffect(() => {
+        getName();
+
+    },[])
 
 
     return (
@@ -26,9 +54,12 @@ function Header({ user }) {
                 &emsp;&emsp;&nbsp;
                 <div className=' col-xl-4' id='leftHead'>
                     <Link to='/dashboard'><img src="https://img.icons8.com/small/30/000000/gender-neutral-user.png" alt='...' className='profIcon inline' /></Link>
-                    <Link to='/login' className="hrefs"><p className='sign inline smol'>{user ? user.firstName : "Sign In"}</p></Link>
+                    <Link to='/login' className="hrefs"><p className='sign inline smol'>{user ? 'Hello,' + ' ' + user.firstName : "Sign In"}</p></Link>
                     <p className='border-end' id='gspace'>&emsp;</p>
-                    <button className='sign inline smol' onClick={logOut}>&emsp;Log Out</button>
+                    {
+
+                    }
+                    <Link to='/logout' className='hrefs'><span className='sign inline smol'>&emsp;Log Out</span></Link>
                 </div>
                 <div className='col-xl-4  '>
                     <Link to='/'><img src={logo} alt='...' className=' logo' /></Link>

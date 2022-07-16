@@ -13,6 +13,7 @@ import Bestsellers from './Pages/Bestsellers'
 import Designers from './Pages/Designers'
 import Register from './Pages/Register'
 import Dashboard from './Pages/Dashboard'
+import Logout from './Pages/Logout'
 // import RegisteredPages from './Pages/RegisteredPages'
 
 
@@ -34,6 +35,7 @@ function App() {
         {/* <Route path='/testcart' element={<TestCart />} /> */}
         <Route path='*' element={<ErrorPage />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/logout' element={<Logout />} />
         <Route path='/register' element={<Register />} />
         <Route path='/bestsellers' element={<Bestsellers />} />
         <Route path='/designers' element={<Designers />} />
