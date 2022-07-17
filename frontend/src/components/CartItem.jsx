@@ -19,7 +19,12 @@ const CartItem = ({ product }) => {
 
     const test = () => {
         toast.dark("This is how toast works!", {
-            transition: bounce
+            transition: bounce,
+            pauseOnHover: false,
+            closeButton: true,
+            progress: 0,
+            closeOnClick: true,
+            autoClose: 500
         });
     }
 
@@ -37,8 +42,13 @@ const CartItem = ({ product }) => {
 
     }
 
-    const delItem = () => {
-        cart = cart.filter(product.id)
+
+    const delItem = (e) => {
+        cart = cart.filter(prod => prod.id !== e)
+        console.log(e)
+        // let arr = [1,2,3]
+        // arr = arr.filter(e => e !== 1);
+        // console.log(arr)
     }
 
     return (
@@ -55,8 +65,8 @@ const CartItem = ({ product }) => {
                     <p className='inline smol' id='amount'>{amount}</p>
                     &emsp;
                     <button className='inline amountBtns' id='addBtn' onClick={increment}>+</button>
-                    &emsp;&emsp;<button><img src={trash} alt="..." onClick={test} /></button>
-                    <ToastContainer limit={1} position="bottom-right" transition={bounce}/>
+                    &emsp;&emsp;<button><img src={trash} alt="..." onClick={(product.id) = delItem} /></button>
+                    <ToastContainer limit={1} position="bottom-right" transition={bounce} autoClose={true} draggable={50}/>
                 </div>
 
             </div>

@@ -54,7 +54,7 @@ const Login = () => {
             // let temp = req.cookies.jwtoken
             // console.log(temp)
             alert('Login Successful!')
-            navigate('/')
+            navigate(-1)
 
         }
         // if (data.user === true) {
