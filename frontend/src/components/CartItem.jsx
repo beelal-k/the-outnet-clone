@@ -12,6 +12,8 @@ const CartItem = ({ product }) => {
 
     let [amount, setAmount] = useState(1)
 
+    // let cartFilter;
+    // console.log(cartFilter)
     const bounce = cssTransition({
         enter: "animate__animated animate__wobble",
         exit: "animate__animated animate__wobble"
@@ -42,20 +44,28 @@ const CartItem = ({ product }) => {
 
     }
 
+    // let filCart;
+    let temp;
 
     const delItem = (e) => {
-        cart = cart.filter(prod => prod.id !== e)
-        console.log(e)
+        temp = cart.filter(prod => prod.id !== e)
+        console.log(temp)
         // let arr = [1,2,3]
         // arr = arr.filter(e => e !== 1);
-        // console.log(arr)
+        // console.log(e)
+        if (temp) {
+            temp = cart
+            console.log(cart)
+        }
+
     }
 
     return (
         <>
-            <div className='testLeft ' key={product.id}>
+            <div className='testLeft '>
                 <img src={product.image} className='cartImg' alt='...' />
                 <div className='cartInfo'>
+                    <h5>{product.id}</h5>
                     <h6>{product.brand}</h6>
                     <p>{product.desc}</p>
                     <p>Color&emsp;|&emsp;{product.color}</p>
@@ -65,8 +75,8 @@ const CartItem = ({ product }) => {
                     <p className='inline smol' id='amount'>{amount}</p>
                     &emsp;
                     <button className='inline amountBtns' id='addBtn' onClick={increment}>+</button>
-                    &emsp;&emsp;<button><img src={trash} alt="..." onClick={(product.id) = delItem} /></button>
-                    <ToastContainer limit={1} position="bottom-right" transition={bounce} autoClose={true} draggable={50}/>
+                    &emsp;&emsp;<button onClick={() => delItem(product.id)}><img src={trash} alt="..." /></button>
+                    <ToastContainer limit={1} position="bottom-right" transition={bounce} autoClose={true} draggable={50} />
                 </div>
 
             </div>
