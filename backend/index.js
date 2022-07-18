@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('./models/User.js');
+const Product = require('./models/Products.js')
 require('./database/config');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
@@ -76,6 +77,19 @@ app.get('/dashboard', authenticate, (req, res) => {
 
 })
 
+app.get('/browse', async (req, res) => {
+    // try{
+    const product = await Product.find();
+    res.send(product)
+    // }
+    // catch(err){
+    //     console.log(err)
+
+    // }
+
+})
+
+
 app.get('/', (req, res) => {
     res.send(req.rootUser)
 })
@@ -102,6 +116,15 @@ app.get('/api/header', async (req, res) => {
     }
 
 })
+
+app.get('/singleItem', async (req, res) => {
+
+    const product = await Product.find();
+    res.send(product)
+
+})
+
+
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}!`);

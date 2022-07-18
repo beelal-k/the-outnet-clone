@@ -1,15 +1,46 @@
 import React from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import InfoBanner from '../components/InfoBanner';
 import '../css/Browse.css'
 // import prod1 from '../images/prod1.avif'
-import products from '../data/data.js'
+// import products from '../data/data.js'
 
 function Browse() {
 
-  let items = products;
+  
+  const [product, setProduct] = useState([]);
+  
+  
+  const getProducts = async () => {
+    
+    const res = await fetch("http://localhost:80/browse", {
+      method: 'GET',
+      headers: {
+        Accept: "application/json",
+        "content-type": "application/json"
+      },
+      credentials: 'include'
+      
+    })
 
+    const data = await res.json();
+    setProduct(data)
+    // console.log(data);  
+    
+    
+  }
 
+  useEffect(() => {
+
+    getProducts();
+    
+  }, [])
+  
+  console.log(product)
+  // let items = products;
+  
   return (
     <>
 
@@ -57,14 +88,14 @@ function Browse() {
         &emsp;
         <div className='' id='itemSection'>
 
-          {items.map(prod => {
+          {product.map(prod => {
             return (
               <>
 
                 <div className='row'>
                   <div className='text-center pt-4'>
-                    <Link to={`/browse/${prod.id}`}><img src={prod.image} alt='...' className='w-75' /></Link>
-                    <Link to={`/browse/${prod.id}`} className='hrefs'><h6 className='pt-2'>{prod.brand}</h6></Link>
+                    <Link to={`/browse/${prod._id}`}><img src={prod.image} alt='...' className='w-75' /></Link>
+                    <Link to={`/browse/${prod._id}`} className='hrefs'><h6 className='pt-2'>{prod.brand}</h6></Link>
                     <p className='small'>{prod.desc}</p>
                     <h6>${prod.price}</h6>
 

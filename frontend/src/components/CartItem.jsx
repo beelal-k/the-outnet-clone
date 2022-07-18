@@ -65,7 +65,6 @@ const CartItem = ({ product }) => {
             <div className='testLeft '>
                 <img src={product.image} className='cartImg' alt='...' />
                 <div className='cartInfo'>
-                    <h5>{product.id}</h5>
                     <h6>{product.brand}</h6>
                     <p>{product.desc}</p>
                     <p>Color&emsp;|&emsp;{product.color}</p>

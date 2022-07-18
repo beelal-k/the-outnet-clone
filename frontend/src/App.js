@@ -30,7 +30,7 @@ function App() {
         <Route exact path='/' element={<Home />} />
         <Route exact path='/home' element={<Home />} />
         <Route path='/browse' element={<Browse />} />
-        <Route path='/browse/:id' element={<SingleItem />} />
+        <Route path='/browse/:_id' element={<SingleItem />} />
         <Route path='/cart' element={<TestCart />} />
         {/* <Route path='/testcart' element={<TestCart />} /> */}
         <Route path='*' element={<ErrorPage />} />

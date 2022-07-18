@@ -1,32 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import products from '../data/data.js'
 import '../css/SingleItem.css'
 import { Link } from 'react-router-dom'
 import InfoBanner from './InfoBanner.jsx'
 import cart from '../data/cartData.js'
+import { useEffect } from 'react'
 
 
 const SingleItem = () => {
 
-    let items = products
+    // let items = products
 
-    let { id } = useParams();
-    let prodData = products.find(e => e.id === Number(id))
+    let { _id } = useParams();
 
-    const addCart = () => {
+    const [product, setProduct] = useState([]);
 
-        let temp = [];
-        let item = items.find(x => x.id === Number(id))
-        temp.push(item)
+    const getProduct = async () => {
 
-        cart.push(temp[0])
-        temp = []
-        console.log(cart)
-        // console.log(temp)
-        // console.log(products)
+        const res = await fetch("http://localhost:80/singleItem", {
+            method: 'GET',
+            headers: {
+                Accept: "application/json",
+                "content-type": "application/json"
+            },
+            credentials: 'include'
+
+        })
+
+        const data = await res.json();
+        // setProduct(data)
+        const temp = data.filter(e => e._id === _id)
+        setProduct(temp)
+        // console.log(product)
+        // console.log(data);  
+
+
     }
 
+    // let prodData = products.find(e => e.id === Number(_id))
+
+    console.log(_id)
+    
+    useEffect(() => {
+        getProduct(); 
+        
+    }, [])
+
+    // console.log(product[0].brand)
+    
+    // const addCart = () => {
+        
+        //     let temp = [];
+        //     let item = items.find(x => x.id === Number(_id))
+        //     temp.push(item)
+
+    //     cart.push(temp[0])
+    //     temp = []
+    //     console.log(cart)
+    //     // console.log(temp)
+    //     // console.log(products)
+    // }
+    // console.log(product)
+    
     return (
         <>
             <InfoBanner />
@@ -38,17 +74,17 @@ const SingleItem = () => {
             <section className='container d-flex'>
 
                 <div id='itemleft' className='text-center'>
-                    <img src={prodData.image} alt='...' className='w-50' />
+                    <img src={product ? product[0].image : null} alt='...' className='w-50' />
                 </div>
 
                 <div id='itemright' className='container'>
 
                     <span className='smol'>JUST IN</span><br />
-                    <span className='big'>{prodData.brand}</span><br />
-                    <span className='smol'>{prodData.desc}</span>
+                    <span className='big'>{product ? product[0].brand : 'BRAND_NAME'}</span><br />
+                    <span className='smol'>{product ? product[0].desc : 'PRODUCT_DESCRIPTION'}</span>
                     <br />
                     <br />
-                    <h6>${prodData.price}</h6>
+                    <h6>${product ? product[0].price : 'PRODUCT_PRICE'}</h6>
                     <br />
                     <p className='smol'>Colour: Pink</p>
                     <br />
@@ -61,7 +97,7 @@ const SingleItem = () => {
                     <br />
                     <br />
                     <br />
-                    <button className='col-11' id='add2cart' onClick={addCart}>Add To Bag</button>
+                    <button className='col-11' id='add2cart' >Add To Bag</button>
                     <br />
                     <button className='col-11' id='add2wish'>Add To Wish List</button>
 
@@ -78,8 +114,8 @@ const SingleItem = () => {
                 <h6 className='pt-2'>
                     You May Also Like
                 </h6>
-                <div className='container' id='alsoItems'>
-                    {items.filter(prod => prod.brand === prodData.brand).map(prods => {
+                {/* <div className='container' id='alsoItems'>
+                    {product.filter(prod => prod.brand === product.brand).map(prods => {
                         return (
                             <>
 
@@ -101,7 +137,7 @@ const SingleItem = () => {
 
 
                     }
-                </div>
+                </div> */}
             </div>
 
         </>
