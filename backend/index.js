@@ -117,12 +117,12 @@ app.get('/api/header', async (req, res) => {
 
 })
 
-app.get('/singleItem', async (req, res) => {
+// app.get('/singletem', async (req, res) => {
 
-    const product = await Product.find();
-    res.send(product)
+//     const product = await Product.find();
+//     res.send(product)
 
-})
+// })
 
 
 
