@@ -9,7 +9,9 @@ import Sub2 from '../components/Sub2'
 // import slider from 'react-slick'
 // import SimpleSlider from '../components/Carousel'
 import InfoBanner from '../components/InfoBanner'
+// import { useEffect } from 'react'
 function Home() {
+
     return (
         <>
             <InfoBanner />

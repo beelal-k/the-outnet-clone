@@ -209,3 +209,7 @@ body{
   color: rgb(44, 44, 44);
   font-size: 70px;
 }
+
+.hide{
+  display: none;
+}

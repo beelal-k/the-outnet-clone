@@ -10,9 +10,7 @@ import { useEffect } from 'react'
 
 const Header = () => {
 
-
     const [user, setUser] = useState();
-
 
     const getName = async () => {
         try {
@@ -39,7 +37,7 @@ const Header = () => {
     useEffect(() => {
         getName();
 
-    },[])
+    }, [])
 
 
     return (
@@ -59,7 +57,7 @@ const Header = () => {
                     {
 
                     }
-                    <Link to='/logout' className='hrefs'><span className='sign inline smol'>&emsp;Log Out</span></Link>
+                    <Link to='/logout' className='hrefs'><span className={`sign inline smol ${user ? null : "hide"}`}>&emsp;Log Out</span></Link>
                 </div>
                 <div className='col-xl-4  '>
                     <Link to='/'><img src={logo} alt='...' className=' logo' /></Link>

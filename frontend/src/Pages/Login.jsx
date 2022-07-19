@@ -54,6 +54,7 @@ const Login = () => {
             // let temp = req.cookies.jwtoken
             // console.log(temp)
             alert('Login Successful!')
+            // window.location.pathname('/');
             navigate(-1)
 
         }
