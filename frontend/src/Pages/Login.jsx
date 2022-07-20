@@ -55,7 +55,7 @@ const Login = () => {
             // console.log(temp)
             alert('Login Successful!')
             // window.location.pathname('/');
-            navigate(-1)
+            navigate('/')
 
         }
         // if (data.user === true) {

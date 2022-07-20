@@ -78,17 +78,10 @@ app.get('/dashboard', authenticate, (req, res) => {
 })
 
 app.get('/browse', async (req, res) => {
-    // try{
     const product = await Product.find();
     res.send(product)
-    // }
-    // catch(err){
-    //     console.log(err)
-
-    // }
 
 })
-
 
 app.get('/', (req, res) => {
     res.send(req.rootUser)
@@ -117,16 +110,30 @@ app.get('/api/header', async (req, res) => {
 
 })
 
-// app.get('/singletem', async (req, res) => {
-
-//     const product = await Product.find();
-//     res.send(product)
-
-// })
-
-
-
 app.listen(port, () => {
     console.log(`Server started on port ${port}!`);
 })
+
+
+// app.put('/api/a2c', async (req, res) => {
+//     const product = await Product.findOne({
+//         _id: req.body.prodID
+//     })
+//     console.log(req.body.prodID)
+
+//     if (product) {
+//         const token = req.cookies.jwtoken;
+//         if (token) {
+//             const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
+//             const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
+//             const add = await User.findOneAndUpdate({ _id: rootUser._id }, { $push: { "cart.item": { product } } })
+//             const result = await add.save()
+//             res.send({ status: "Product added to cart!" })
+//             console.log(product)    
+//             console.log(result)
+//             console.log('done')
+//         }
+
+//     }
+// })
 

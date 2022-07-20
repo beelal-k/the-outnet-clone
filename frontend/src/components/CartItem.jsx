@@ -14,21 +14,21 @@ const CartItem = ({ product }) => {
 
     // let cartFilter;
     // console.log(cartFilter)
-    const bounce = cssTransition({
-        enter: "animate__animated animate__wobble",
-        exit: "animate__animated animate__wobble"
-    })
+    // const bounce = cssTransition({
+    //     enter: "animate__animated animate__wobble",
+    //     exit: "animate__animated animate__wobble"
+    // })
 
-    const test = () => {
-        toast.dark("This is how toast works!", {
-            transition: bounce,
-            pauseOnHover: false,
-            closeButton: true,
-            progress: 0,
-            closeOnClick: true,
-            autoClose: 500
-        });
-    }
+    // const test = () => {
+    //     toast.dark("This is how toast works!", {
+    //         transition: bounce,
+    //         pauseOnHover: false,
+    //         closeButton: true,
+    //         progress: 0,
+    //         closeOnClick: true,
+    //         autoClose: 500
+    //     });
+    // }
 
 
     let increment = () => {
@@ -75,7 +75,7 @@ const CartItem = ({ product }) => {
                     &emsp;
                     <button className='inline amountBtns' id='addBtn' onClick={increment}>+</button>
                     &emsp;&emsp;<button onClick={() => delItem(product.id)}><img src={trash} alt="..." /></button>
-                    <ToastContainer limit={1} position="bottom-right" transition={bounce} autoClose={true} draggable={50} />
+                    {/* <ToastContainer limit={1} position="bottom-right" transition={bounce} autoClose={true} draggable={50} /> */}
                 </div>
 
             </div>

@@ -15,6 +15,7 @@ const SingleItem = () => {
     let { _id } = useParams();
 
     const [item, setItem] = useState([]);
+    const [prodID, setprodID] = useState();
 
     const getProduct = async () => {
 
@@ -33,6 +34,7 @@ const SingleItem = () => {
         const temp = data.filter(e => e._id === _id)
         console.log(temp)
         setItem(temp)
+        setprodID(_id)
         // console.log(product)
         // console.log(data);  
 
@@ -47,9 +49,28 @@ const SingleItem = () => {
 
     useEffect(() => {
         getProduct();
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0)
 
     }, [])
+
+    // const handleClick = async (e) => {
+    //     e.preventDefault()
+    //     try {
+    //         fetch("http://localhost:80/api/a2c", {
+    //             method: 'PUT',
+    //             body: JSON.stringify({ prodID }),
+    //             headers: {
+    //                 "content-type": "application/json"
+    //             }
+    //         })
+    //         // const data = await res.json();
+    //         // console.log(data);
+    //         console.log("Product added to cart");
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
+
 
     // console.log(product[0].brand)
 
@@ -104,7 +125,7 @@ const SingleItem = () => {
                                 <br />
                                 <br />
                                 <br />
-                                <button className='col-11' id='add2cart' >Add To Bag</button>
+                                <button className='col-11' id='add2cart'>Add To Bag</button>
                                 <br />
                                 <button className='col-11' id='add2wish'>Add To Wish List</button>
 
