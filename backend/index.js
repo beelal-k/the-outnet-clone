@@ -159,8 +159,8 @@ app.put('/api/atc/:_id', async (req, res) => {
             res.status(200)
 
             if (!rootUser) {
-                window.alert('Please login to add item to cart')
-                throw error('User Not Found')
+                // window.alert('Please login to add item to cart')
+                throw error('Please login to add item to cart')
             }
         }
 
