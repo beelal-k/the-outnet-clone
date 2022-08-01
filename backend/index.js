@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('./models/User.js');
 const Product = require('./models/Products.js')
+const Cart = require('./models/Cart.js')
 require('./database/config');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
@@ -37,6 +38,12 @@ app.post('/api/register', async (req, res) => {
         const result = await user.save();
         res.json({ status: 'User Registered!' })
         console.log(result);
+        const cart = await new Cart({
+            userID: user._id,
+            cart: []
+        });
+        const finalCart = await cart.save();
+        console.log(finalCart);
     }
     catch (err) {
         res.json({ status: 'error', error: 'Some Error IDK' })
@@ -110,30 +117,59 @@ app.get('/api/header', async (req, res) => {
 
 })
 
+app.get('/api/cart', async (req, res) => {
+    const token = req.cookies.jwtoken;
+    if (token) {
+        const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
+        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
+        res.status(200);
+
+        const userID = rootUser._id;
+        console.log(userID)
+
+        const cart = await Cart.findOne({ userID: userID })
+        res.send(cart.cart)
+
+        if (!rootUser) {
+            res.status(400).json({ error: "Please Login" });
+        }
+    }
+
+})
+
+// let prodID;
+
+// app.post('/api/getProdID', async (req, res) => {
+//     prodID = req.body._id;
+//     console.log(prodID);
+// })
+
+
+app.put('/api/a2c/:_id', async (req, res) => {
+
+    const prodID = req.params._id;
+    const token = req.cookies.jwtoken;
+    console.log('This is product ID:' + prodID)
+    // const prodID = req.params._id
+    if (token) {
+        const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
+        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
+        const cart = await Cart.findOne({ userID: rootUser._id });
+        const prod = await Product.findOne({ _id: prodID })
+        const add2cart = await cart.update({ cart: { $push: { prod } } })
+        const result = await add2cart.save()
+        res.send(result);
+
+        if (!rootUser) {
+            throw error('User Not Found')
+        }
+
+    }
+
+})
+
 app.listen(port, () => {
     console.log(`Server started on port ${port}!`);
 })
 
-
-// app.put('/api/a2c', async (req, res) => {
-//     const product = await Product.findOne({
-//         _id: req.body.prodID
-//     })
-//     console.log(req.body.prodID)
-
-//     if (product) {
-//         const token = req.cookies.jwtoken;
-//         if (token) {
-//             const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
-//             const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
-//             const add = await User.findOneAndUpdate({ _id: rootUser._id }, { $push: { "cart.item": { product } } })
-//             const result = await add.save()
-//             res.send({ status: "Product added to cart!" })
-//             console.log(product)    
-//             console.log(result)
-//             console.log('done')
-//         }
-
-//     }
-// })
 

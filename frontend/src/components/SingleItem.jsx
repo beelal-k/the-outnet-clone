@@ -10,13 +10,22 @@ import { useEffect } from 'react'
 
 const SingleItem = () => {
 
-    // let items = products
-
     let { _id } = useParams();
 
     const [item, setItem] = useState([]);
     const [prodID, setprodID] = useState();
 
+
+    const addToCart = async () =>{
+        const res = await fetch(`http://localhost:80/api/a2c/${_id}`, {
+            method: 'PUT'
+        })
+        const data = await res.json();
+        console.log(data)
+
+    }
+    
+    
     const getProduct = async () => {
 
         const res = await fetch("http://localhost:80/browse", {
@@ -35,58 +44,14 @@ const SingleItem = () => {
         console.log(temp)
         setItem(temp)
         setprodID(_id)
-        // console.log(product)
-        // console.log(data);  
 
-
-    }
-
-    // console.log(product)
-    // let prodData = products.find(e => e.id === Number(_id))
-
-    console.log(_id)
-
+    }    
 
     useEffect(() => {
         getProduct();
         window.scrollTo(0, 0)
 
     }, [])
-
-    // const handleClick = async (e) => {
-    //     e.preventDefault()
-    //     try {
-    //         fetch("http://localhost:80/api/a2c", {
-    //             method: 'PUT',
-    //             body: JSON.stringify({ prodID }),
-    //             headers: {
-    //                 "content-type": "application/json"
-    //             }
-    //         })
-    //         // const data = await res.json();
-    //         // console.log(data);
-    //         console.log("Product added to cart");
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // }
-
-
-    // console.log(product[0].brand)
-
-    // const addCart = () => {
-
-    //     let temp = [];
-    //     let item = items.find(x => x.id === Number(_id))
-    //     temp.push(item)
-
-    //     cart.push(temp[0])
-    //     temp = []
-    //     console.log(cart)
-    //     // console.log(temp)
-    //     // console.log(products)
-    // }
-    // console.log(product)
 
     return (
         <>
@@ -125,7 +90,7 @@ const SingleItem = () => {
                                 <br />
                                 <br />
                                 <br />
-                                <button className='col-11' id='add2cart'>Add To Bag</button>
+                                <button className='col-11' id='add2cart' onClick={addToCart}>Add To Bag</button>
                                 <br />
                                 <button className='col-11' id='add2wish'>Add To Wish List</button>
 

@@ -1,28 +1,40 @@
 import React from 'react'
 import CartItem from '../components/CartItem'
 import '../css/TestCart.css'
-import cart from '../data/cartData';
+// import cart from '../data/cartData';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
 // import { useEffect } from 'react';
 // import Cart from './Cart';
 
 const TestCart = () => {
 
-    // let total = () => {
+    const [cart, setCart] = useState([])
+    
 
-    //     let temp;
-    //     let cartTemp=[];
-    //     temp = cart.map(x => Number(x.price))
-    //     for(let i = 0; i <= temp.length; i++){
-    //         let num = temp[i] + temp[i+1]
-    //         cartTemp.push(num)
-    //         // console.log(num)        
-    //     }
-    //     console.log(temp)
-    //     console.log(cartTemp)
+    const getCart = async () => {
+        const res = await fetch('http://localhost:80/api/cart', {
+            method: 'GET',
+            headers: {
+                Accept: "application/json",
+                "content-type": "application/json"
+            },
+            credentials: 'include'
+        })
+
+        const data = await res.json();
+        console.log(data)
+        setCart(data)
+    }
+
+    useEffect(() => {
+
+        getCart();
+
+    }, [])
 
 
-    // }
     let temp = 0;
     let len;
     let subPrice = 0;
