@@ -80,8 +80,6 @@ app.post('/api/login', async (req, res) => {
 
 app.get('/dashboard', authenticate, (req, res) => {
     res.send(req.rootUser)
-
-
 })
 
 app.get('/browse', async (req, res) => {
@@ -144,29 +142,33 @@ app.get('/api/cart', async (req, res) => {
 //     console.log(prodID);
 // })
 
-
-app.put('/api/a2c/:_id', async (req, res) => {
-
-    const prodID = req.params._id;
+app.put('/api/atc/:_id', async (req, res) => {
     const token = req.cookies.jwtoken;
-    console.log('This is product ID:' + prodID)
-    // const prodID = req.params._id
+    const prodID = req.params._id;
+    console.log('This is product ID:' + prodID);
+    console.log(token)
     if (token) {
         const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
         const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
         const cart = await Cart.findOne({ userID: rootUser._id });
         const prod = await Product.findOne({ _id: prodID })
-        const add2cart = await cart.update({ cart: { $push: { prod } } })
-        const result = await add2cart.save()
-        res.send(result);
+        if (prod) {
+            const addcart = await cart.update({ $push: { cart: prod } })
+            const result = await cart.save()
+            res.send(result);
+            res.status(200)
 
-        if (!rootUser) {
-            throw error('User Not Found')
+            if (!rootUser) {
+                throw error('User Not Found')
+            }
         }
 
     }
-
 })
+// if (res.status(200)) {
+//     console.log('Item added!')
+// }
+
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}!`);

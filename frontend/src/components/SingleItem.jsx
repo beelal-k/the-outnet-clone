@@ -10,22 +10,29 @@ import { useEffect } from 'react'
 
 const SingleItem = () => {
 
+
     let { _id } = useParams();
 
     const [item, setItem] = useState([]);
-    const [prodID, setprodID] = useState();
 
+    const addToCart = async () => {
+        const res = await fetch(`http://localhost:80/api/atc/${_id}`, {
+            method: 'PUT',
+            headers: {
+                Accept: "application/json",
+                "content-type": "application/json"
+            },
+            credentials: 'include'
 
-    const addToCart = async () =>{
-        const res = await fetch(`http://localhost:80/api/a2c/${_id}`, {
-            method: 'PUT'
         })
+        if (data) {
+            console.log("not working")
+        }
         const data = await res.json();
         console.log(data)
 
     }
-    
-    
+
     const getProduct = async () => {
 
         const res = await fetch("http://localhost:80/browse", {
@@ -43,9 +50,8 @@ const SingleItem = () => {
         const temp = data.filter(e => e._id === _id)
         console.log(temp)
         setItem(temp)
-        setprodID(_id)
 
-    }    
+    }
 
     useEffect(() => {
         getProduct();
