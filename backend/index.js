@@ -167,13 +167,16 @@ app.put('/api/atc/:_id', async (req, res) => {
     }
 })
 
-app.put('/api/delprod/:e', async (req, res) => {
+app.delete('/api/delprod/:e', async (req, res) => {
     const token = req.cookies.jwtoken;
     const prodID = req.params.e;
+    console.log(prodID)
     if (token) {
         const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
-        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
-        const cart = await Cart.findOneAndUpdate({ userID: rootUser._id }, { $pull: { cart: { _id : ObjectId(prodID) } } });
+        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })        
+
+        //CANNOT REMOVE OBJECT FROM ARRAY
+        const cart = await Cart.findOneAndUpdate({ userID: rootUser._id }, { $pull: { "cart": { "_id": prodID } } }).exec()
         const result = await cart.save();
         res.send(result)
     }
