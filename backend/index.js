@@ -170,15 +170,20 @@ app.put('/api/atc/:_id', async (req, res) => {
 app.delete('/api/delprod/:e', async (req, res) => {
     const token = req.cookies.jwtoken;
     const prodID = req.params.e;
-    console.log(prodID)
     if (token) {
+        console.log(prodID)
         const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
-        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })        
+        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
+        const cart = await Cart.findOne({ cart: { _id: prodID } })
+        console.log(cart)
 
+        //LOOK INTO PROJECTION IN MONGOOSE TO FIX THIS PROBLEM
+        
+        
         //CANNOT REMOVE OBJECT FROM ARRAY
-        const cart = await Cart.findOneAndUpdate({ userID: rootUser._id }, { $pull: { "cart": { "_id": prodID } } }).exec()
-        const result = await cart.save();
-        res.send(result)
+        // const cart = await Cart.findOneAndUpdate({ userID: rootUser._id }, { $pull: { "cart": [{ "_id": prodID }] } }, {new: true})
+        // const result = await cart.save();
+        // res.send(result)
     }
 })
 
