@@ -153,7 +153,7 @@ app.put('/api/atc/:_id', async (req, res) => {
         const cart = await Cart.findOne({ userID: rootUser._id });
         const prod = await Product.findOne({ _id: prodID })
         if (prod) {
-            const addcart = await cart.update({ $push: { cart: prod } })
+            const addcart = await cart.updateOne({ $push: { cart: prod } })
             const result = await cart.save()
             res.send(result);
             res.status(200)
@@ -166,6 +166,20 @@ app.put('/api/atc/:_id', async (req, res) => {
 
     }
 })
+
+app.put('/api/delprod/:e', async (req, res) => {
+    const token = req.cookies.jwtoken;
+    const prodID = req.params.e;
+    if (token) {
+        const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
+        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
+        const cart = await Cart.findOneAndUpdate({ userID: rootUser._id }, { $pull: { cart: { _id : ObjectId(prodID) } } });
+        const result = await cart.save();
+        res.send(result)
+    }
+})
+
+// const deleteItem = await cart.updateOne({ $pull: { "cart": { _id : prodID } } })
 // if (res.status(200)) {
 //     console.log('Item added!')
 // }

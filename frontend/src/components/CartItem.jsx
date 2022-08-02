@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
 import trash from '../images/delete.png'
-import cart from '../data/cartData';
-import { ToastContainer, toast } from 'react-toastify';
-import { cssTransition } from 'react-toastify';
+// import cart from '../data/cartData';
+// import { ToastContainer, toast } from 'react-toastify';
+// import { cssTransition } from 'react-toastify';
 import 'animate.css'
 import 'react-toastify/dist/ReactToastify.css';
 import '../css/CartItem.css'
@@ -45,18 +45,19 @@ const CartItem = ({ product }) => {
     }
 
     // let filCart;
-    let temp;
+    // let temp;
 
-    const delItem = (e) => {
-        temp = cart.filter(prod => prod.id !== e)
-        console.log(temp)
-        // let arr = [1,2,3]
-        // arr = arr.filter(e => e !== 1);
-        // console.log(e)
-        if (temp) {
-            temp = cart
-            console.log(cart)
-        }
+    const delItem = async (e) => {
+        const res = await fetch(`http://localhost:80/api/delprod/${e}`, {
+            method: 'put',
+            headers: {
+                Accept: "application/json",
+                "content-type": "application/json"
+            },
+            credentials: 'include'
+
+
+        })
 
     }
 
@@ -74,7 +75,7 @@ const CartItem = ({ product }) => {
                     <p className='inline smol' id='amount'>{amount}</p>
                     &emsp;
                     <button className='inline amountBtns' id='addBtn' onClick={increment}>+</button>
-                    &emsp;&emsp;<button onClick={() => delItem(product.id)}><img src={trash} alt="..." /></button>
+                    &emsp;&emsp;<button onClick={() => delItem(product._id)}><img src={trash} alt="..." /></button>
                     {/* <ToastContainer limit={1} position="bottom-right" transition={bounce} autoClose={true} draggable={50} /> */}
                 </div>
 

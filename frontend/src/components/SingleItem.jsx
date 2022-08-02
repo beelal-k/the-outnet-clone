@@ -25,12 +25,7 @@ const SingleItem = () => {
             credentials: 'include'
 
         })
-        if (data) {
-            console.log("not working")
-        }
-        const data = await res.json();
-        console.log(data)
-
+       
     }
 
     const getProduct = async () => {
