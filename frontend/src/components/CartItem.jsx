@@ -49,7 +49,7 @@ const CartItem = ({ product }) => {
 
     const delItem = async (e) => {
         const res = await fetch(`http://localhost:80/api/delprod/${e}`, {
-            method: 'delete',
+            method: 'put',
             headers: {
                 Accept: "application/json",
                 "content-type": "application/json"

@@ -40,7 +40,7 @@ const Login = () => {
                 'content-type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify({ email, password },)
+            body: JSON.stringify({ email, password })
         }
 
         )
@@ -124,6 +124,8 @@ const Login = () => {
 
                 </div>
             </div>
+
+            
 
         </>
 

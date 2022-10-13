@@ -36,7 +36,7 @@ const SingleItem = () => {
                 Accept: "application/json",
                 "content-type": "application/json"
             },
-            credentials: 'include'
+            // credentials: 'include'
 
         })
 

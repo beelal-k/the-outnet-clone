@@ -13,7 +13,7 @@ const cors = require('cors');
 app.use(cors());
 app.use(cors({
     origin: true,
-    credentials: true
+    credentials: true,
 }))
 app.use(cookieParser())
 app.use(express.json());
@@ -23,9 +23,9 @@ const port = 80;
 
 
 
-app.post('/api/register', async (req, res) => {
+app.post('api/register', async (req, res) => {
     try {
-        const user = await new User({
+        const user = new User({
             email: req.body.email,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -38,7 +38,7 @@ app.post('/api/register', async (req, res) => {
         const result = await user.save();
         res.json({ status: 'User Registered!' })
         console.log(result);
-        const cart = await new Cart({
+        const cart = new Cart({
             userID: user._id,
             cart: []
         });
@@ -52,18 +52,26 @@ app.post('/api/register', async (req, res) => {
 
 })
 
-
 app.post('/api/login', async (req, res) => {
     const user = await User.findOne({
         email: req.body.email,
         password: req.body.password
     })
 
-    let token;
+    // const temp = await user.generateAuthToken();
+    // res.cookie("testToken", temp,{
+    //     expires: new Date(Date.now() + 29800000),
+    //     httpOnly:true    
+    // })
 
-    if (user) {
 
-        token = await user.generateAuthToken();
+
+    if (!user) {
+        return res.status(400).json({ error: 'User Not Found' })
+    }
+    else {
+
+        const token = await user.generateAuthToken();
 
         res.cookie('jwtoken', token, {
             expires: new Date(Date.now() + 2980000),
@@ -71,9 +79,6 @@ app.post('/api/login', async (req, res) => {
         });
 
         return res.json({ status: 'ok', user: token })
-    }
-    else {
-        return res.status(400).json({ error: 'User Not Found' })
     }
 
 })
@@ -135,12 +140,6 @@ app.get('/api/cart', async (req, res) => {
 
 })
 
-// let prodID;
-
-// app.post('/api/getProdID', async (req, res) => {
-//     prodID = req.body._id;
-//     console.log(prodID);
-// })
 
 app.put('/api/atc/:_id', async (req, res) => {
     const token = req.cookies.jwtoken;
@@ -167,15 +166,15 @@ app.put('/api/atc/:_id', async (req, res) => {
     }
 })
 
-app.delete('/api/delprod/:e', async (req, res) => {
+app.put('/api/delprod/:e', async (req, res) => {
     const token = req.cookies.jwtoken;
     const prodID = req.params.e;
     if (token) {
-        console.log(prodID)
         const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
         const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
-        const user = await Cart.find({ $and: [{ userID: rootUser._id }, { cart: { _id: prodID } }] })
-        console.log(user)
+        await Cart.updateMany({ userID: rootUser._id.toString() }, { $pull: { cart: [{ _id: `ObjectId(${prodID})` }] } })
+        console.log(prodID)
+
         // const cart = user.find({ 'cart': [{ _id: prodID }] });
         // console.log(cart)
         // const cart = await Cart.findOne({ cart: { _id: prodID } })
