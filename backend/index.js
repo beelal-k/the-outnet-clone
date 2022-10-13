@@ -6,6 +6,7 @@ require('./database/config');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const authenticate = require('./middleware/authenticate')
+const ObjectId = require('mongodb').ObjectId
 
 const app = express();
 const cors = require('cors');
@@ -168,11 +169,11 @@ app.put('/api/atc/:_id', async (req, res) => {
 
 app.put('/api/delprod/:e', async (req, res) => {
     const token = req.cookies.jwtoken;
-    const prodID = req.params.e;
+    const prodID = new ObjectId(req.params.e);
     if (token) {
         const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
         const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
-        await Cart.updateMany({ userID: rootUser._id.toString() }, { $pull: { cart: [{ _id: `ObjectId(${prodID})` }] } })
+        await Cart.updateOne({ userID: rootUser._id }, { $pull: { cart: { _id: prodID } } })
         console.log(prodID)
 
         // const cart = user.find({ 'cart': [{ _id: prodID }] });

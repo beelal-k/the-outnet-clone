@@ -11,7 +11,6 @@ import { useState } from 'react';
 const TestCart = () => {
 
     const [cart, setCart] = useState([])
-    
 
     const getCart = async () => {
         const res = await fetch('http://localhost:80/api/cart', {

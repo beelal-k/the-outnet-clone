@@ -11,7 +11,6 @@ import '../css/CartItem.css'
 const CartItem = ({ product }) => {
 
     let [amount, setAmount] = useState(1)
-
     // let cartFilter;
     // console.log(cartFilter)
     // const bounce = cssTransition({
