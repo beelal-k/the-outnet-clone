@@ -24,7 +24,7 @@ const port = 80;
 
 
 
-app.post('api/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
     try {
         const user = new User({
             email: req.body.email,
@@ -87,6 +87,11 @@ app.post('/api/login', async (req, res) => {
 app.get('/dashboard', authenticate, (req, res) => {
     res.send(req.rootUser)
 })
+
+app.get('/dashboard/user-details', authenticate, (req, res) => {
+    res.send(req.rootUser)
+})
+
 
 app.get('/browse', async (req, res) => {
     const product = await Product.find();
@@ -175,27 +180,24 @@ app.put('/api/delprod/:e', async (req, res) => {
         const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
         await Cart.updateOne({ userID: rootUser._id }, { $pull: { cart: { _id: prodID } } })
         console.log(prodID)
-        
 
-        // const cart = user.find({ 'cart': [{ _id: prodID }] });
-        // console.log(cart)
-        // const cart = await Cart.findOne({ cart: { _id: prodID } })
-
-        //LOOK INTO PROJECTION IN MONGOOSE TO FIX THIS PROBLEM
-
-
-        //CANNOT REMOVE OBJECT FROM ARRAY
-        // const cart = await Cart.findOneAndUpdate({ userID: rootUser._id }, { $pull: { "cart": [{ "_id": prodID }] } }, {new: true})
-        // const result = await cart.save();
-        // res.send(result)
     }
 })
 
-// const deleteItem = await cart.updateOne({ $pull: { "cart": { _id : prodID } } })
-// if (res.status(200)) {
-//     console.log('Item added!')
-// }
+app.put('/dashboard/user-details/updatePassword', async (req, res) => {
+    const token = req.cookies.jwtokenl
+    try {
+        if (token) {
 
+            const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
+            const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
+            await rootUser.updateOne({ $set: { password: req.body.newPassword } });
+
+        }
+    } catch (err) {
+        console.log(err.message)
+    } 
+})
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}!`);

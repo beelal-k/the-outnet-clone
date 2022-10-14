@@ -213,3 +213,11 @@ body{
 .hide{
   display: none;
 }
+
+#updateBtn{
+  display: block;
+}
+
+#updateSection{
+  display: none;
+}

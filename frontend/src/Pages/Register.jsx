@@ -17,31 +17,30 @@ const Register = () => {
     let [promo, setPromo] = useState(true);
 
 
-    let checkEmpty = (e) => {
-        if (e.length <= 0) {
-            setShow('')
-            setRed('borderRed')
+    // let checkEmpty = (e) => {
+    //     if (e.length <= 0) {
+    //         setShow('')
+    //         setRed('borderRed')
 
-        }
-        else {
-            setShow('hide')
-            setRed('');
-        }
+    //     }
+    //     else {
+    //         setShow('hide')
+    //         setRed('');
+    //     }
 
-    }
     const registerUser = async (e) => {
-            e.preventDefault();
-            let result = await fetch('http://localhost:80/api/register', {
-                method: 'POST',
-                body: JSON.stringify({ firstName, lastName, email, password, promo }),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            })
+        e.preventDefault();
+        let result = await fetch('http://localhost:80/api/register', {
+            method: 'POST',
+            body: JSON.stringify({ firstName, lastName, email, password, promo }),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
 
-            result = await result.json();
-            console.log(result);
-            navigate('/login');
+        result = await result.json();
+        console.log(result);
+        navigate('/login');
     }
 
     return (
@@ -101,7 +100,7 @@ const Register = () => {
                             No thanks
                         </label>
                         <p className='smol'>Find out more about our <Link to='...' className="blk">Privacy Policy</Link></p>
-                        <button id='signBtn' onClick={(e) =>{registerUser(e);}}>Register</button>
+                        <button id='signBtn' onClick={(e) => { registerUser(e); }}>Register</button>
                         <br />
                         <br />
                     </form>

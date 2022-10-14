@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 // import Header from '../components/Header';
 import InfoBanner from '../components/InfoBanner';
 import '../css/Dashboard.css';
+import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
   // let temp = 0;
@@ -77,10 +78,10 @@ const Dashboard = () => {
             <h6>Address Book</h6>
             <p>Managae your addresses</p>
           </section>
-          <section className=' mt-3 sections'>
+          <Link to='/dashboard/user-details' className='links mt-3 sections'><section className=' '>
             <h6>Account Details</h6>
             <p>Change your sign in information</p>
-          </section>
+          </section></Link>
           <section className=' mt-3 sections'>
             <h6>Saved Cards</h6>
             <p>View and delete your payment details</p>

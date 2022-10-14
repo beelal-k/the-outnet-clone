@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './css/App.css'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
@@ -14,13 +14,17 @@ import Designers from './Pages/Designers'
 import Register from './Pages/Register'
 import Dashboard from './Pages/Dashboard'
 import Logout from './Pages/Logout'
+import AccountDetails from './Pages/AccountDetails'
 // import RegisteredPages from './Pages/RegisteredPages'
 
 
 function App() {
+
+  
+  
   return (
     <>
-
+    
       {/* HEADER  */}
       <Header />
       {/* FIRST SECTION OF THE HOME PAGE */}
@@ -41,6 +45,7 @@ function App() {
         <Route path='/designers' element={<Designers />} />
         {/* <Route element={<RegisteredPages />}> */}
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path="/dashboard/user-details" element={<AccountDetails />} />
         {/* </Route> */}
       </Routes>
 

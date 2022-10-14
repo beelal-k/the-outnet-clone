@@ -73,7 +73,7 @@ const Header = () => {
             <nav className='container offset-xl-2' id='navbar'>
                 <ul className='inline smol' id='navbarUL'>
                     <Link to='/superbrands' className='link'><li>Superbrands</li></Link>
-                    <Link to='/browse' className='link'><li>Just In</li></Link>
+                    <Link to='/browse' className='link'><li><b>Just In</b></li></Link>
                     <Link to='/bestsellers' className='link'><li>Bestsellers</li></Link>
                     <Link to='/designers' className='link'><li>Designers</li></Link>
                     <Link to='/superbrands' className='link'><li>Clothing</li></Link>

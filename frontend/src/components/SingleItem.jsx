@@ -36,7 +36,7 @@ const SingleItem = () => {
                 Accept: "application/json",
                 "content-type": "application/json"
             },
-            // credentials: 'include'
+            credentials: 'include'
 
         })
 
@@ -105,38 +105,7 @@ const SingleItem = () => {
 
             }
 
-            <div id='alsoSection' className='container'>
-                <br />
-                <br />
-                <hr className='col-12' />
-                <h6 className='pt-2'>
-                    You May Also Like
-                </h6>
-                {/* <div className='container' id='alsoItems'>
-                    {product.filter(prod => prod.brand === product.brand).map(prods => {
-                        return (
-                            <>
-
-                                <div className='row w-25'>
-                                    <div className='text-center pt-4'>
-                                        <img src={prods.image} alt='...' className='w-75' />
-                                        <Link to={`/browse/${prods.id}`} className='hrefs'><h6 className='pt-2'>{prods.brand}</h6></Link>
-                                        <p className='small'>{prods.desc}</p>
-                                        <h6>${prods.price}</h6>
-
-                                    </div>
-
-                                </div>
-                            </>
-
-                        )
-                    })
-
-
-
-                    }
-                </div> */}
-            </div>
+         
 
         </>
     )
