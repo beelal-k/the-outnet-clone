@@ -153,7 +153,7 @@ app.put('/api/atc/:_id', async (req, res) => {
         const cart = await Cart.findOne({ userID: rootUser._id });
         const prod = await Product.findOne({ _id: prodID })
         if (prod) {
-            const addcart = await cart.updateOne({ $push: { cart: prod } })
+            await cart.updateOne({ $push: { cart: prod } })
             const result = await cart.save()
             res.send(result);
             res.status(200)
@@ -175,6 +175,7 @@ app.put('/api/delprod/:e', async (req, res) => {
         const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
         await Cart.updateOne({ userID: rootUser._id }, { $pull: { cart: { _id: prodID } } })
         console.log(prodID)
+        
 
         // const cart = user.find({ 'cart': [{ _id: prodID }] });
         // console.log(cart)
