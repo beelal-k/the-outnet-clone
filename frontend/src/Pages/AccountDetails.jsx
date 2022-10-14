@@ -69,8 +69,8 @@ const AccountDetails = () => {
     const checkPassword =() =>{
         if(document.getElementById('originalPassword').value === userData.password){
             if(document.getElementById('newPassword').value === document.getElementById('reNewPassword').value){
-                const res = fetch('http://locahost:80/dashboard/user-details/updatePassword', {
-                    method:'put',
+                const res = fetch('http://localhost:80/api/updatePassword', {
+                    method:'PUT',
                     body: JSON.stringify({newPassword}),
                     headers:{
                         "content-type": "application/json"
@@ -115,7 +115,7 @@ const AccountDetails = () => {
 
                     <input type="password" placeholder='Enter current password' className='p-1' id='originalPassword'/>
                     <br />
-                    <input type="password" placeholder='Enter new password' className='p-1' id='newPassword' onClick={(e) => setNewPassword(e.target.value)}/>
+                    <input type="password" placeholder='Enter new password' className='p-1' id='newPassword' onChange={(e) => setNewPassword(e.target.value)}/>
                     <input type="password" placeholder='Re-enter new password' className='m-3 p-1' id='reNewPassword'/>
                     <br />
                     <button className='btn btn-secondary'onClick={checkPassword}>Update</button>

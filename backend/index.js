@@ -117,13 +117,10 @@ app.get('/api/header', async (req, res) => {
         const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
         const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
 
-        if (!rootUser) {
-            throw error('User not found')
-        }
+        
         // req.rootUser = rootUser;
         res.send(rootUser);
     }
-
 })
 
 app.get('/api/cart', async (req, res) => {
@@ -184,20 +181,35 @@ app.put('/api/delprod/:e', async (req, res) => {
     }
 })
 
-app.put('/dashboard/user-details/updatePassword', async (req, res) => {
-    const token = req.cookies.jwtokenl
+app.put('/api/updatePassword', async (req, res) => {
+    const token = req.cookies.jwtoken
+    const password = req.body.newPassword
+    console.log(token)
     try {
-        if (token) {
-
-            const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
-            const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
-            await rootUser.updateOne({ $set: { password: req.body.newPassword } });
-
+        if(token){
+        const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
+        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
+        await rootUser.updateOne({ $set: { password } });
         }
     } catch (err) {
         console.log(err.message)
-    } 
+    }
 })
+
+app.delete('/api/delete-account', async (req, res) =>{
+    const token = req.cookies.jwtoken;
+    try{
+        if (token) {
+            const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
+            const rootUser = await User.findOne({_id: verifyToken._id, "tokens.token": token})
+            await rootUser.deleteOne();
+        }
+    }catch(err) {
+        console.log(err.message)
+    }
+    
+})
+
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}!`);

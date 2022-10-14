@@ -90,6 +90,10 @@ const Dashboard = () => {
             <h6>Marketing Preferences</h6>
             <p>Tailor your emails from us</p>
           </section>
+          <section className=' mt-3 sections deleteSection'>
+            <Link to='/dashboard/delete-account' className='deleteLink'><h6>Delete Account</h6></Link>
+            <p>Delete your account permanently</p>
+          </section>
         </div>
       </div>
 

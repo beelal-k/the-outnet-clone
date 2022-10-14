@@ -29,3 +29,22 @@
     border: 2px solid black;
     
 }
+
+.deleteSection{
+    border:1px solid rgb(255, 151, 151);
+    color:red;
+    /* color:rgb(255, 106, 106) ; */
+}
+
+.deleteSection:hover{
+    border:1px solid red;
+}
+
+.deleteLink{
+    color:red;
+    text-decoration: none;
+}
+
+.deleteLink:hover{
+    color: red;
+}

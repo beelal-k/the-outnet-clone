@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './css/App.css'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
@@ -15,6 +15,7 @@ import Register from './Pages/Register'
 import Dashboard from './Pages/Dashboard'
 import Logout from './Pages/Logout'
 import AccountDetails from './Pages/AccountDetails'
+import DeleteAccount from './Pages/DeleteAccount'
 // import RegisteredPages from './Pages/RegisteredPages'
 
 
@@ -46,6 +47,7 @@ function App() {
         {/* <Route element={<RegisteredPages />}> */}
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path="/dashboard/user-details" element={<AccountDetails />} />
+        <Route path="/dashboard/delete-account" element={<DeleteAccount />} />
         {/* </Route> */}
       </Routes>
 
