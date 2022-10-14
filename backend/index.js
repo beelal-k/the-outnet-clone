@@ -65,8 +65,6 @@ app.post('/api/login', async (req, res) => {
     //     httpOnly:true    
     // })
 
-
-
     if (!user) {
         return res.status(400).json({ error: 'User Not Found' })
     }
