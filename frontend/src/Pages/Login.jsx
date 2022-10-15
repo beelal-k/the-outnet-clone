@@ -33,16 +33,17 @@ const Login = () => {
 
         const result = await fetch('http://localhost:80/api/login', {
             method: 'POST',
+            body: JSON.stringify({ email, password }),
             headers: {
+                Accept: 'application/json',
                 'content-type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify({ email, password })
         }
 
         )
         data = await result.json();
-
+        
         console.log(data.user)
         if (result.status === 400 || !data) {
             alert('Invalid Credentials')
@@ -50,14 +51,14 @@ const Login = () => {
         else {
             alert('Login Successful!')
             navigate('/')
-
+            window.location.reload();
         }
- 
+
     }
 
     return (
         <>
-    
+
 
             <div className='container d-flex border mt-4 p-5 g-4' id='LoginBack'>
                 <div className='container bg-white border' id='loginSect'>
@@ -97,7 +98,7 @@ const Login = () => {
                 </div>
             </div>
 
-            
+
 
         </>
 

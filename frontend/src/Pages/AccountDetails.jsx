@@ -66,19 +66,23 @@ const AccountDetails = () => {
         getUserDetails();
     }, [])
 
-    const checkPassword =() =>{
-        if(document.getElementById('originalPassword').value === userData.password){
-            if(document.getElementById('newPassword').value === document.getElementById('reNewPassword').value){
+    const checkPassword = () => {
+        if (document.getElementById('originalPassword').value === userData.password) {
+            if (document.getElementById('newPassword').value === document.getElementById('reNewPassword').value) {
                 const res = fetch('http://localhost:80/api/updatePassword', {
-                    method:'PUT',
-                    body: JSON.stringify({newPassword}),
-                    headers:{
+                    method: 'PUT',
+                    body: JSON.stringify({ newPassword }),
+                    headers: {
                         "content-type": "application/json"
 
                     },
-                    credentials:"include"
+                    credentials: "include"
                 })
             }
+            window.location.reload()
+        }
+        else{
+            alert('Current password is incorrect');
         }
     }
 
@@ -113,14 +117,14 @@ const AccountDetails = () => {
                 </div>
                 <div id="updateSection">
 
-                    <input type="password" placeholder='Enter current password' className='p-1' id='originalPassword'/>
+                    <input type="password" placeholder='Enter current password' className='p-1' id='originalPassword' />
                     <br />
-                    <input type="password" placeholder='Enter new password' className='p-1' id='newPassword' onChange={(e) => setNewPassword(e.target.value)}/>
-                    <input type="password" placeholder='Re-enter new password' className='m-3 p-1' id='reNewPassword'/>
+                    <input type="password" placeholder='Enter new password' className='p-1' id='newPassword' onChange={(e) => setNewPassword(e.target.value)} />
+                    <input type="password" placeholder='Re-enter new password' className='m-3 p-1' id='reNewPassword' />
                     <br />
-                    <button className='btn btn-secondary'onClick={checkPassword}>Update</button>
-                    <br/>
-                    <br/>
+                    <button className='btn btn-secondary' onClick={checkPassword}>Update</button>
+                    <br />
+                    <br />
                     <b><Link className="links" to='' onClick={cancelUpdatePassword}>Cancel</Link></b>
                 </div>
 

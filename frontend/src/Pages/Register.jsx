@@ -36,6 +36,7 @@ const Register = () => {
             headers: {
                 'content-type': 'application/json'
             }
+            
         })
 
         result = await result.json();

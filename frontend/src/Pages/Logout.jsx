@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const Logout = () => {
 
     const navigate = useNavigate();
-    const [refreshKey, setRefreshKey] = useState(0)
+    // const [refreshKey, setRefreshKey] = useState(0)
 
     const logOut = () => {
         fetch('http://localhost:80/api/logout', {
@@ -16,8 +16,10 @@ const Logout = () => {
             },
             credentials: 'include'
         }).then((res) => {
-            setRefreshKey(oldKey => oldKey + 1)
+            // setRefreshKey(oldKey => oldKey + 1)
+            
             navigate('/');
+            window.location.reload();
             if (!res.status === 200) {
                 const error = new Error(res.error);
                 throw error;
@@ -30,7 +32,7 @@ const Logout = () => {
     useEffect(() => {
         logOut()
 
-    },[refreshKey])
+    },[])
 
 
 

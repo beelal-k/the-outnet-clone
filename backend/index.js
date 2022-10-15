@@ -7,22 +7,25 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const authenticate = require('./middleware/authenticate')
 const ObjectId = require('mongodb').ObjectId
-
-const app = express();
 const cors = require('cors');
 
-app.use(cors());
-app.use(cors({
-    origin: true,
-    credentials: true,
-}))
+const app = express();
+
 app.use(cookieParser())
+// app.use(cors());
+const corsOpt = {
+    origin: ['http://localhost:80', 'http://localhost:3000'],
+    credentials: true,
+    methods:['GET','POST','PUT','DELETE','PATCH','HEAD','OPTIONS'],
+    allowedHeaders:['Content-Type','Authorization', 'x-csrf-token'],
+    exposedHeaders:['Content-Range','X-Content-Range', 'Authorization']
+
+}
+app.use(cors(corsOpt))
 app.use(express.json());
 
 
 const port = 80;
-
-
 
 app.post('/api/register', async (req, res) => {
     try {
@@ -59,23 +62,17 @@ app.post('/api/login', async (req, res) => {
         password: req.body.password
     })
 
-    // const temp = await user.generateAuthToken();
-    // res.cookie("testToken", temp,{
-    //     expires: new Date(Date.now() + 29800000),
-    //     httpOnly:true    
-    // })
-
     if (!user) {
         return res.status(400).json({ error: 'User Not Found' })
     }
     else {
 
         const token = await user.generateAuthToken();
-
+        
         res.cookie('jwtoken', token, {
             expires: new Date(Date.now() + 2980000),
-            httpOnly: true
-        });
+            httpOnly: true,
+        })
 
         return res.json({ status: 'ok', user: token })
     }
@@ -114,8 +111,6 @@ app.get('/api/header', async (req, res) => {
     if (token) {
         const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
         const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
-
-        
         // req.rootUser = rootUser;
         res.send(rootUser);
     }
@@ -184,28 +179,28 @@ app.put('/api/updatePassword', async (req, res) => {
     const password = req.body.newPassword
     console.log(token)
     try {
-        if(token){
-        const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
-        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
-        await rootUser.updateOne({ $set: { password } });
+        if (token) {
+            const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
+            const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
+            await rootUser.updateOne({ $set: { password } });
         }
     } catch (err) {
         console.log(err.message)
     }
 })
 
-app.delete('/api/delete-account', async (req, res) =>{
+app.delete('/api/delete-account', async (req, res) => {
     const token = req.cookies.jwtoken;
-    try{
+    try {
         if (token) {
             const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
-            const rootUser = await User.findOne({_id: verifyToken._id, "tokens.token": token})
+            const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
             await rootUser.deleteOne();
         }
-    }catch(err) {
+    } catch (err) {
         console.log(err.message)
     }
-    
+
 })
 
 

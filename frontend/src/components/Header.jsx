@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 const Header = () => {
 
     const [user, setUser] = useState();
-    const [refreshKey, setRefreshKey] = useState(0)
+    // const [refreshKey, setRefreshKey] = useState(0)
     const getName = async () => {
         try {
             const res = await fetch('http://localhost:80/api/header', {

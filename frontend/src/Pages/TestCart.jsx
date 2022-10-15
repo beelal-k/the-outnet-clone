@@ -60,7 +60,7 @@ const TestCart = () => {
                 <div className='heading' id='top'>
                     <h6>Shopping Bag</h6>
                     <p>Amount of items // To be added with data</p>
-
+                    <b>*You need to be logged in to add items to cart*</b>
                 </div>
                 <div className='something'>
                     <div className='nothing'>

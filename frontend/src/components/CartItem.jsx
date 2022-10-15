@@ -7,9 +7,11 @@ import trash from '../images/delete.png'
 import 'animate.css'
 import 'react-toastify/dist/ReactToastify.css';
 import '../css/CartItem.css'
+import { useNavigate } from 'react-router-dom';
 
 const CartItem = ({ product }) => {
 
+    const navigate = useNavigate();
     let [amount, setAmount] = useState(1)
     // let cartFilter;
     // console.log(cartFilter)
@@ -55,7 +57,7 @@ const CartItem = ({ product }) => {
             },
             credentials: 'include'
 
-
+        
         })
 
     }

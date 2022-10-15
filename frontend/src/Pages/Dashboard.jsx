@@ -78,7 +78,8 @@ const Dashboard = () => {
             <h6>Address Book</h6>
             <p>Managae your addresses</p>
           </section>
-          <Link to='/dashboard/user-details' className='links mt-3 sections'><section className=' '>
+          <Link to='/dashboard/user-details' className='links mt-3 sections'>
+            <section className=' '>
             <h6>Account Details</h6>
             <p>Change your sign in information</p>
           </section></Link>
@@ -90,12 +91,14 @@ const Dashboard = () => {
             <h6>Marketing Preferences</h6>
             <p>Tailor your emails from us</p>
           </section>
-          <section className=' mt-3 sections deleteSection'>
-            <Link to='/dashboard/delete-account' className='deleteLink'><h6>Delete Account</h6></Link>
-            <p>Delete your account permanently</p>
-          </section>
-        </div>
+          <Link to='/dashboard/delete-account' className='deleteLink mt-3 sections deleteSection'>
+            <section className='  '>
+              <h6>Delete Account</h6>
+              <p>Delete your account permanently</p>
+        </section>
+        </Link>
       </div>
+    </div>
 
     </>
 
