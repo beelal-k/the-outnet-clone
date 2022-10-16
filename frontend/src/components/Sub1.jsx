@@ -5,7 +5,7 @@ import '../css/App.css'
 function Sub1() {
   return (
     <>
-      <main className='container d-flex pt-5 g-0 text-center'>
+      <main className='container d-flex pt-5 mt-4 g-0 text-center'>
         <div className='width'>
           <img src='https://www.theoutnet.com/cms/ycm/resource/blob/1261210/63df7e8e392bde75e8c0d68955787808/promo-1-image-data.jpg/w1500_q80.jpg' alt='...' className='w-100' />
           <br />

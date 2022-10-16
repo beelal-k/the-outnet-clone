@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import trash from '../images/delete.png'
 
-const CartItem = ({ product }) => {
+const CartItem = ({ product,refreshKey }) => {
 
     let [amount, setAmount] = useState(1)
 
@@ -30,7 +30,11 @@ const CartItem = ({ product }) => {
 
         
         })
-
+        refreshKey()
+    }
+    const deleteAndRefresh = async(e)=>{
+        await refreshKey()
+        delItem(e)
     }
 
     return (
@@ -47,7 +51,7 @@ const CartItem = ({ product }) => {
                     <p className='inline smol' id='amount'>{amount}</p>
                     &emsp;
                     <button className='inline amountBtns' id='addBtn' onClick={increment}>+</button>
-                    &emsp;&emsp;<button onClick={() => delItem(product._id)}><img src={trash} alt="..." /></button>
+                    &emsp;&emsp;<button onClick={() => deleteAndRefresh(product._id)}><img src={trash} alt="..." /></button>
                 </div>
 
             </div>

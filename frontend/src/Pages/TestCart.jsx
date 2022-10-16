@@ -7,6 +7,7 @@ import { useState } from 'react';
 const TestCart = () => {
 
     const [cart, setCart] = useState([])
+    const [refreshKey, setRefreskKey] = useState(0);
 
     const getCart = async () => {
         const res = await fetch('http://localhost:80/api/cart', {
@@ -27,7 +28,7 @@ const TestCart = () => {
 
         getCart();
 
-    }, [])
+    }, [refreshKey])
 
 
     let temp = 0;
@@ -46,6 +47,12 @@ const TestCart = () => {
         totalPrice = shipPrice + subPrice;
     }
 
+    const changeRefresh = () =>{
+        setRefreskKey(oldKey => oldKey + 1)
+    }
+    
+    console.log(refreshKey)
+
     return (
         <>
 
@@ -58,7 +65,7 @@ const TestCart = () => {
                 <div className='something'>
                     <div className='nothing'>
                         {
-                            cart.length >= 1 ? cart.map(prod => { return (<CartItem product={prod} />) }) : <div className='text-center pt-5 mt-5 '><h1>Cart is empty!</h1><Link to="/" className='goshopping'><h6>GO SHOPPING!</h6></Link></div>
+                            cart.length >= 1 ? cart.map(prod => { return (<CartItem product={prod} refreshKey = {changeRefresh}/>) }) : <div className='text-center pt-5 mt-5 '><h1>Cart is empty!</h1><Link to="/" className='goshopping'><h6>GO SHOPPING!</h6></Link></div>
                         }
 
                     </div>
