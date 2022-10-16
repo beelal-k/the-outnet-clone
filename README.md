@@ -1,6 +1,6 @@
  **Outnet Clone**
 =======================
-## Final project for PNY Trainings MERN bootcamp        
+ **Final project for PNY Trainings MERN bootcamp**        
 
 
 ## **What to know :**
