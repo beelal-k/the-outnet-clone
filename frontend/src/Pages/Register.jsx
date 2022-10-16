@@ -17,17 +17,6 @@ const Register = () => {
     let [promo, setPromo] = useState(true);
 
 
-    // let checkEmpty = (e) => {
-    //     if (e.length <= 0) {
-    //         setShow('')
-    //         setRed('borderRed')
-
-    //     }
-    //     else {
-    //         setShow('hide')
-    //         setRed('');
-    //     }
-
     const registerUser = async (e) => {
         e.preventDefault();
         let result = await fetch('http://localhost:80/api/register', {
@@ -55,12 +44,7 @@ const Register = () => {
                         <span className={`smol red ${show}`}>Email is required</span>
                         <br />
                         <br />
-                        {/* <input type='radio' id='registered' name='reg_user' className='radios'/>
-                    <label className='' for="registered">&emsp;I'm already registered</label>
-                    <br />
-                    <input type='radio' id='newUser' name='reg_user' className='radios'/>
-                    <label className='' for="newUser">&emsp;I'm new to THE OUTNET</label> */}
-                        {/* <form action=""> */}
+                      
                         <Link to='/login' className='hrefs'>
                             <label className="form-control">
                                 <input type="radio" name="radio" id='registered' className='radios' />
@@ -74,10 +58,7 @@ const Register = () => {
                                 I'm new to THE OUTNET
                             </label>
                         </Link>
-                        {/* </form> */}
                         <br />
-                        {/* <label className={`pt-2 pb-1 labels registered ${inverseToggle}`}>Password</label><br />
-                        <input type='password' className={`loginInps ${inverseToggle}`} name='password' /> */}
                         <label className="pb-1 labels newUser">Create New Password</label><br />
                         <input type='password' className={`loginInps`} name='password' onChange={(e) => { setPassword(e.target.value); }} />
                         <p className={`smol`}>Your password must be eight characters or more and contain an uppercase letter and number</p>

@@ -1,14 +1,13 @@
 
 #LoginBack {
     background-image: url('../images/loginbackground.jpg');
-    /* display: grid; */
-    /* grid-row: 2; */
+
 }
 
 
 #loginSect {
     padding-top: 3%;
-    /* padding-left: 3%; */
+
     width: 40%;
 }
 
@@ -67,11 +66,6 @@
 .form-control+.form-control {
     margin-top: 0.1em;
 }
-/* 
-.form-control:focus-within {
-     color: black; 
-} */
-
 .radios {
     appearance: none;
     background-color: white;

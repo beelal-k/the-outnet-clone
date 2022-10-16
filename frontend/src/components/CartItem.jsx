@@ -19,9 +19,6 @@ const CartItem = ({ product }) => {
 
     }
 
-    // let filCart;
-    // let temp;
-
     const delItem = async (e) => {
         await fetch(`http://localhost:80/api/delprod/${e}`, {
             method: 'put',

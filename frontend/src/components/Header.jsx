@@ -4,14 +4,12 @@ import logo from '../images/logo.png'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useEffect } from 'react'
-// import { useEffect } from 'react'
-// import { Cookies } from 'react-cookie'
-// import Login from '../Pages/Login'
+
 
 const Header = () => {
 
     const [user, setUser] = useState();
-    // const [refreshKey, setRefreshKey] = useState(0)
+   
     const getName = async () => {
         try {
             const res = await fetch('http://localhost:80/api/header', {

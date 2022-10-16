@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
-// import { update } from '../../../backend/models/Cart';
 const AccountDetails = () => {
 
     const [userData, setUserData] = useState([]);
@@ -24,9 +23,8 @@ const AccountDetails = () => {
 
             const data = await res.json();
             setUserData(data);
-            // console.log(userData)
             console.log(data)
-            // temp = 1;
+            
 
             if (!res.status === 200) {
                 const error = new Error(res.error)
@@ -38,9 +36,7 @@ const AccountDetails = () => {
 
         catch (err) {
             console.log(err)
-            // if (temp === 1) {
             navigate('/login')
-            // }
         }
 
     }
@@ -86,23 +82,6 @@ const AccountDetails = () => {
         }
     }
 
-
-    // const getUserData = async () => {
-    //     const res = await fetch('http://localhost:80/api/user-details/', {
-    //         method: 'get',
-    //         headers: {
-    //             Accept: "application/json",
-    //             "content-type": "application/json"
-    //         },
-    //         credentials: 'include'
-
-
-    //     })
-    //     const data = await res.json();
-    //     console.log(data);
-    //     setUserData(data);
-    // }
-
     return (
         <>
             <main className='container mt-5 mb-5'>
@@ -111,7 +90,6 @@ const AccountDetails = () => {
                     <hr />
                     <p><h6 className='inline'>Name: </h6>{userData.firstName} {userData.lastName} </p>
                     <p><h6 className='inline'>Email: </h6>{userData.email}</p>
-                    {/* <p ><h6 className='inline'>Password: </h6>{userData.password}</p> */}
                     <p className=''><h6 className='inline'>Password: </h6><input type="password" disabled value={userData.password} className="inline" /></p>
                     <button className='btn btn-secondary' id='updateBtn' onClick={updatePassword}>Update password</button>
                 </div>

@@ -22,14 +22,9 @@ body{
   display: inline;
 }
 
-/* .profIcon{
-  /* width: %; */
-/* height: 50%; */
-/* display: inline; 
-}*/
 
 .sign {
-  /* display: inline; */
+
   padding-left: 2%;
 }
 
@@ -39,9 +34,7 @@ body{
   line-height: 40px;
 }
 
-/* .burger{
-  width: 50%;
-} */
+
 
 .logo {
   padding: 5%;
@@ -84,10 +77,6 @@ body{
 #navbarUL li:hover .link{ 
   color: lightgray;
 }
-
-/* #navbarUL .link:hover li{
-  color: lightgray;
-} */
 
 
 
@@ -187,11 +176,11 @@ body{
 
 .mainBtns{
   border: 1px solid black;
-  /* width: 30%; */
+ 
   height: 7%;
   padding-left: 3%;
   padding-right: 3%;
-  /* padding-bottom: 0.9%; */
+ 
   font-size: 15px;
   background-color: white;
   margin-left: 2%;

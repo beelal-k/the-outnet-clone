@@ -16,7 +16,6 @@ import Dashboard from './Pages/Dashboard'
 import Logout from './Pages/Logout'
 import AccountDetails from './Pages/AccountDetails'
 import DeleteAccount from './Pages/DeleteAccount'
-// import RegisteredPages from './Pages/RegisteredPages'
 
 
 function App() {
@@ -26,9 +25,7 @@ function App() {
   return (
     <>
     
-      {/* HEADER  */}
       <Header />
-      {/* FIRST SECTION OF THE HOME PAGE */}
 
 
       <Routes>
@@ -37,21 +34,17 @@ function App() {
         <Route path='/browse' element={<Browse />} />
         <Route path='/browse/:_id' element={<SingleItem />} />
         <Route path='/cart' element={<TestCart />} />
-        {/* <Route path='/testcart' element={<TestCart />} /> */}
         <Route path='*' element={<ErrorPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/logout' element={<Logout />} />
         <Route path='/register' element={<Register />} />
         <Route path='/bestsellers' element={<Bestsellers />} />
         <Route path='/designers' element={<Designers />} />
-        {/* <Route element={<RegisteredPages />}> */}
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path="/dashboard/user-details" element={<AccountDetails />} />
         <Route path="/dashboard/delete-account" element={<DeleteAccount />} />
-        {/* </Route> */}
       </Routes>
 
-      {/* THIS IS THE FOOTER */}
 
 
       <Footer />

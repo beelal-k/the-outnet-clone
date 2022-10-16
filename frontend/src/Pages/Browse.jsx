@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import InfoBanner from '../components/InfoBanner';
 import '../css/Browse.css'
-// import prod1 from '../images/prod1.avif'
-// import products from '../data/data.js'
+
 
 function Browse() {
 
@@ -27,7 +26,7 @@ function Browse() {
 
     const data = await res.json();
     setProduct(data)
-    // console.log(data);  
+
     
     
   }
@@ -39,7 +38,7 @@ function Browse() {
   }, [])
   
   console.log(product)
-  // let items = products;
+
   
   return (
     <>

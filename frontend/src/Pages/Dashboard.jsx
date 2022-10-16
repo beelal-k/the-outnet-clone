@@ -1,17 +1,13 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-// import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom'
-// import Header from '../components/Header';
 import InfoBanner from '../components/InfoBanner';
 import '../css/Dashboard.css';
 import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
-  // let temp = 0;
   const navigate = useNavigate();
   const [userData, setUserData] = useState();
-  // let fName = userData.firstName;
 
 
   const callDashboard = async () => {
@@ -29,9 +25,7 @@ const Dashboard = () => {
 
       const data = await res.json();
       setUserData(data);
-      // console.log(userData)
       console.log(data)
-      // temp = 1;
 
       if (!res.status === 200) {
         const error = new Error(res.error)
@@ -42,9 +36,7 @@ const Dashboard = () => {
 
     catch (err) {
       console.log(err)
-      // if (temp === 1) {
       navigate('/login')
-      // }
     }
 
   }

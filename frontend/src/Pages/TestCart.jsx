@@ -1,13 +1,9 @@
 import React from 'react'
 import CartItem from '../components/CartItem'
 import '../css/TestCart.css'
-// import cart from '../data/cartData';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
-// import { useEffect } from 'react';
-// import Cart from './Cart';
-
 const TestCart = () => {
 
     const [cart, setCart] = useState([])
@@ -39,7 +35,6 @@ const TestCart = () => {
     let subPrice = 0;
     let shipPrice = 0;
     let totalPrice = 0;
-    // let total = () => {
 
     if (cart.length >= 1) {
         shipPrice = 2;
@@ -50,8 +45,6 @@ const TestCart = () => {
         console.log(temp);
         totalPrice = shipPrice + subPrice;
     }
-    // console.log(total);
-    // }
 
     return (
         <>

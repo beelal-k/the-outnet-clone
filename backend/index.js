@@ -12,7 +12,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(cookieParser())
-// app.use(cors());
+
 const corsOpt = {
     origin: ['http://localhost:80', 'http://localhost:3000'],
     credentials: true,
@@ -111,7 +111,6 @@ app.get('/api/header', async (req, res) => {
     if (token) {
         const verifyToken = jwt.verify(token, 'outnetsecretadmin123')
         const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token })
-        // req.rootUser = rootUser;
         res.send(rootUser);
     }
 })
@@ -154,7 +153,6 @@ app.put('/api/atc/:_id', async (req, res) => {
             res.status(200)
 
             if (!rootUser) {
-                // window.alert('Please login to add item to cart')
                 throw error('Please login to add item to cart')
             }
         }

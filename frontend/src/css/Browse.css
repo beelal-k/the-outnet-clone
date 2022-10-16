@@ -33,7 +33,7 @@ div a:hover{
 
 #itemSection {
     width: 75%;
-    /* display: flex; */
+
     column-count: 3;
 }
 

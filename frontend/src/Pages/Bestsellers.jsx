@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import InfoBanner from '../components/InfoBanner';
 import '../css/Browse.css'
-// import prod1 from '../images/prod1.avif'
 import products from '../data/data.js'
 
 function Bestsellers() {
@@ -23,12 +22,7 @@ function Bestsellers() {
             added-to-basket — we think you’ll be quick off the mark with these!
 
           </p>
-          {/* <div className='small'>
-            <a href='...' className='blk'>Clothing</a>&emsp;
-            <a href='...' className='blk'>Dresses</a>&emsp;
-            <a href='...' className='blk'>Shoes</a>&emsp;
-            <a href='...' className='blk'>Bags</a>
-          </div> */}
+         
         </div>
 
         <div className='underHeadRight pt-4 w-50 text-end'>

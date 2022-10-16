@@ -21,8 +21,6 @@
     background-color: white;
     width: 100%;
     display: flex;
-    /* flex-direction: ; */
-    /* flex-wrap: wrap; */
     margin-bottom: 0.8%;
     padding: 3%;
     padding-left: 5%;
@@ -71,14 +69,14 @@
     /* visibility:hidden; */
     width: 65%;
     background-color: white;
-    /* margin-left: 7%; */
+  
 
 }
 
 #right {
     width: 35%;
     background-color: white;
-    /* margin-right: 7%; */
+  
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -94,7 +92,6 @@
     background-color: transparent;
     border: 1px solid lightgray;
     color: lightgray;
-    /* font-size: 30px; */
     padding-left: 8%;
     padding-right: 8%;
     padding-top: 2%;
