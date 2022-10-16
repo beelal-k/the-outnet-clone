@@ -1,36 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
 import trash from '../images/delete.png'
-// import cart from '../data/cartData';
-// import { ToastContainer, toast } from 'react-toastify';
-// import { cssTransition } from 'react-toastify';
-import 'animate.css'
-import 'react-toastify/dist/ReactToastify.css';
-import '../css/CartItem.css'
-import { useNavigate } from 'react-router-dom';
 
 const CartItem = ({ product }) => {
 
-    const navigate = useNavigate();
     let [amount, setAmount] = useState(1)
-    // let cartFilter;
-    // console.log(cartFilter)
-    // const bounce = cssTransition({
-    //     enter: "animate__animated animate__wobble",
-    //     exit: "animate__animated animate__wobble"
-    // })
-
-    // const test = () => {
-    //     toast.dark("This is how toast works!", {
-    //         transition: bounce,
-    //         pauseOnHover: false,
-    //         closeButton: true,
-    //         progress: 0,
-    //         closeOnClick: true,
-    //         autoClose: 500
-    //     });
-    // }
-
 
     let increment = () => {
         if (amount >= 1) {
@@ -49,7 +23,7 @@ const CartItem = ({ product }) => {
     // let temp;
 
     const delItem = async (e) => {
-        const res = await fetch(`http://localhost:80/api/delprod/${e}`, {
+        await fetch(`http://localhost:80/api/delprod/${e}`, {
             method: 'put',
             headers: {
                 Accept: "application/json",
@@ -77,7 +51,6 @@ const CartItem = ({ product }) => {
                     &emsp;
                     <button className='inline amountBtns' id='addBtn' onClick={increment}>+</button>
                     &emsp;&emsp;<button onClick={() => delItem(product._id)}><img src={trash} alt="..." /></button>
-                    {/* <ToastContainer limit={1} position="bottom-right" transition={bounce} autoClose={true} draggable={50} /> */}
                 </div>
 
             </div>

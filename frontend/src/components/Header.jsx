@@ -51,7 +51,14 @@ const Header = () => {
                 &emsp;&emsp;&nbsp;
                 <div className=' col-xl-4' id='leftHead'>
                     <Link to='/dashboard'><img src="https://img.icons8.com/small/30/000000/gender-neutral-user.png" alt='...' className='profIcon inline' /></Link>
-                    <Link to='/login' className="hrefs"><p className='sign inline smol'>{user ? 'Hello,' + ' ' + user.firstName : "Sign In"}</p></Link>
+                    {user ?
+                    // eslint-disable-next-line
+                        <Link to='/dashboard' className="hrefs"><p className='sign inline smol'>{user ? 'Hello,' + ' ' + user.firstName : "Sign In"}</p></Link>
+                        :
+
+                    // eslint-disable-next-line
+                        <Link to='/login' className="hrefs"><p className='sign inline smol'>{user ? 'Hello,' + ' ' + user.firstName : "Sign In"}</p></Link>
+                    }
                     <p className='border-end' id='gspace'>&emsp;</p>
                     {
 
