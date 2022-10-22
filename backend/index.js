@@ -42,7 +42,7 @@ app.post('/api/register', async (req, res) => {
         const result = await user.save();
         res.json({ status: 'User Registered!' })
         console.log(result);
-        const cart = new Cart({
+        const cart = new Cart({e
             userID: user._id,
             cart: []
         });
